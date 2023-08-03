@@ -15,6 +15,7 @@ import Shopping_Cart_Page from './Pages/Shopping Cart Page';
 import Thread_Page from './Pages/Thread Page';
 import User_Profile_Page from './Pages/User Profile Page';
 
+
 function App() {
   return (
     <div>
