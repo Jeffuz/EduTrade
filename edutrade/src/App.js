@@ -6,7 +6,6 @@ import AboutUsPage from './Pages/About Us Page';
 import ContactUsPage from './Pages/Contact Us Page';
 import ForumPage from './Pages/Forum Page';
 import HomePage from './Pages/Home Page';
-import LoginPage from './Pages/Login Page';
 import SignupPage from './Pages/Signup Page';
 import NoPage from './Pages/No Page';
 import ProductDetailsPage from './Pages/Product Details Page';
@@ -14,6 +13,8 @@ import ProductListingsPage from './Pages/Product Listings Page';
 import ShoppingCartPage from './Pages/Shopping Cart Page';
 import ThreadPage from './Pages/Thread Page';
 import UserProfilePage from './Pages/User Profile Page';
+import LoginPage from './Pages/Login Page';
+import NavBar from './Components/NavBar';
 
 
 import { AuthContextProvider } from './Context/AuthContext';
@@ -24,6 +25,7 @@ function App() {
     <div>
       <AuthContextProvider>
         <BrowserRouter>
+          <NavBar />
           <Routes>
             <Route index element={<HomePage />} />
             <Route path="/" element={< HomePage />} />
@@ -39,7 +41,7 @@ function App() {
             <Route path="/userprofile" element={<Protected>< UserProfilePage /></Protected>} />
             <Route path="*" element={<NoPage />} />
           </Routes>
-        </BrowserRouter>        
+        </BrowserRouter>
       </AuthContextProvider>
     </div>
   );

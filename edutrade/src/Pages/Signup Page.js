@@ -1,9 +1,40 @@
-import React from "react";
+import React from 'react';
+import { UserAuth } from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Signup_Page() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { createUser } = UserAuth();
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await createUser(email, password);
+            navigate('/userprofile')
+        } catch (e) {
+            console.log(e.message);
+        }
+    };
+
     return (
         <div>
-            Signup Page
+            <form onSubmit={handleSubmit}>
+                <h1 className='font-bold text-3xl'>Sign Up</h1>
+                <div>
+                    <label>Email Address</label>
+                    <input onChange={(e) => setEmail(e.target.value)} type='email' />
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input onChange={(e) => setPassword(e.target.value)} type='password' />
+                </div>
+                <button>
+                    Sign Up
+                </button>
+            </form>
         </div>
-    )
-}
+    );
+};

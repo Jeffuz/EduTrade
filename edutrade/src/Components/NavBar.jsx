@@ -12,20 +12,18 @@ const NavBar = () => {
         }
     }
     return (
-        <div class='flex w-screen h-auto bg-slate-50 pr-[10vw]'>
-            <h3 class='m-auto ml-[5vw] text-5xl'>EduTrade</h3>                
-
-            <div class='bg-[#E9F7CA] p-10 text-xl'>
-
-                {user?.displayName ? (
+        <div className='flex justify-between items-center h-24 max-w-[1500px] mx-auto px-4'>
+            <h1 className='font-bold text-3xl'>EduTrade</h1>
+            <div>
+                {user?.email ? (
                     <button onClick={handleSignOut}>Logout</button>
                 ) : (
-                    <Link to='/login'>Login</Link>
-                )}     
-
-                <button class='pl-20'>Sign Up</button>            
+                    <div>
+                        <Link to='/login' className='p-4'>Login</Link>
+                        <Link to="/signup" className='p-4'>Sign Up</Link>
+                    </div>
+                )}
             </div>
-
         </div>
     )
 }
