@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../Context/AuthContext';
+import SignupButtonComponent from './SignupButtonComponent';
 
 const NavBar = () => {
     const { user, logOut } = UserAuth()
@@ -18,6 +19,7 @@ const NavBar = () => {
             ) : (
                 <Link to='/login'>Login</Link>
             )}
+            <SignupButtonComponent/>
         </div>
     )
 }
