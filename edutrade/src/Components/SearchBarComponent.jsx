@@ -16,11 +16,11 @@ const SearchBarComponent = () => {
   }
 
   return(
-    <div>
-        <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="What you are looking for"/>
+    <div class='p-10'>
+        <input class='pt-2 pb-2 pr-20 mr-5 rounded-lg' type="text" onChange={(e) => setSearch(e.target.value)} placeholder="What you are looking for"/>
         {/* Auto Complete City names when searching */}
-        <input type="text" onChange={(e) => setLocation(e.target.value)} placeholder="Location"/>
-        <button onClick={handleClick}>Search</button>
+        <input class='pt-2 pb-2 pr-10 rounded-lg' type="text" onChange={(e) => setLocation(e.target.value)} placeholder="Location"/>
+        <button class='rounded-3xl p-2  ml-5 pl-5 pr-5 bg-[#F7D488]' onClick={handleClick}>Search</button>
     </div>    
   )
 
