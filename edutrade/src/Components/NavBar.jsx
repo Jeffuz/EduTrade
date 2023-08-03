@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../Context/AuthContext';
-import SignupButtonComponent from './SignupButtonComponent';
 
 const NavBar = () => {
     const { user, logOut } = UserAuth()
@@ -13,13 +12,18 @@ const NavBar = () => {
         }
     }
     return (
-        <div>
-            {user?.displayName ? (
-                <button onClick={handleSignOut}>Logout</button>
-            ) : (
-                <Link to='/login'>Login</Link>
-            )}
-            <SignupButtonComponent/>
+        <div className='flex justify-between items-center h-24 max-w-[1500px] mx-auto px-4'>
+            <h1 className='font-bold text-3xl'>EduTrade</h1>
+            <div>
+                {user?.email ? (
+                    <button onClick={handleSignOut}>Logout</button>
+                ) : (
+                    <div>
+                        <Link to='/login' className='p-4'>Login</Link>
+                        <Link to="/signup" className='p-4'>Sign Up</Link>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
