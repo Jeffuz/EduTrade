@@ -1,0 +1,1 @@
+// Discussion or Blog format page (threads), clicking into a a discussion (thread) brings you to the thread page
