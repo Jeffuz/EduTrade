@@ -13,7 +13,7 @@ const NavBar = () => {
     }
     return (
         <div className='flex justify-between items-center h-24 max-w-[1500px] mx-auto px-4'>
-            <h1 className='font-bold text-3xl'>EduTrade</h1>
+            <Link to='/' className='font-bold text-3xl'>EduTrade</Link>
             <div>
                 {user?.email ? (
                     <button onClick={handleSignOut}>Logout</button>
