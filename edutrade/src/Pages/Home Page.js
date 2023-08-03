@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../Components/NavBar";
 
-import SignupButtonComponent from "../Components/SignupButtonComponent";
+import ContactButton from "../Components/ContactButton";
 import SearchBarComponent from "../Components/SearchBarComponent";
 
 export default function Home_Page() {
@@ -11,10 +11,15 @@ export default function Home_Page() {
 
     return (
         <div>
-            Home Page
-            <SignupButtonComponent/>
+            <NavBar/>
             <SearchBarComponent/>
-            <NavBar />
+            
+            <h3>Empowering Learning through Educational Exchange</h3>
+            <p>Find what students are selling locally and save</p>
+            <div>
+                Contact Us Page
+                <ContactButton/>
+            </div>
         </div>
     )
 }
