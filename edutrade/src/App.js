@@ -16,26 +16,31 @@ import ThreadPage from './Pages/Thread Page';
 import UserProfilePage from './Pages/User Profile Page';
 
 
+import { AuthContextProvider } from './Context/AuthContext';
+import Protected from './Components/Protected';
+
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<HomePage />} />
-          <Route path="/" element={< HomePage />} />
-          <Route path="/aboutus" element={< AboutUsPage />} />
-          <Route path="/contactus" element={< ContactUsPage />} />
-          <Route path="/forum" element={< ForumPage />} />
-          <Route path="/login" element={< LoginPage />} />
-          <Route path="/signup" element={< SignupPage />} />
-          <Route path="/productdetails" element={< ProductDetailsPage />} />
-          <Route path="/productlistings" element={< ProductListingsPage />} />
-          <Route path="/shoppingcart" element={< ShoppingCartPage />} />
-          <Route path="/thread" element={< ThreadPage />} />
-          <Route path="/userprofile" element={< UserProfilePage />} />
-          <Route path="*" element={<NoPage />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<HomePage />} />
+            <Route path="/" element={< HomePage />} />
+            <Route path="/aboutus" element={< AboutUsPage />} />
+            <Route path="/contactus" element={< ContactUsPage />} />
+            <Route path="/forum" element={< ForumPage />} />
+            <Route path="/login" element={< LoginPage />} />
+            <Route path="/signup" element={< SignupPage />} />
+            <Route path="/productdetails" element={< ProductDetailsPage />} />
+            <Route path="/productlistings" element={< ProductListingsPage />} />
+            <Route path="/shoppingcart" element={< ShoppingCartPage />} />
+            <Route path="/thread" element={< ThreadPage />} />
+            <Route path="/userprofile" element={<Protected>< UserProfilePage /></Protected>} />
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+        </BrowserRouter>        
+      </AuthContextProvider>
     </div>
   );
 }

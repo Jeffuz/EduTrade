@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from "../Components/NavBar";
 
 import SignupButtonComponent from "../Components/SignupButtonComponent";
 import SearchBarComponent from "../Components/SearchBarComponent";
@@ -13,6 +14,7 @@ export default function Home_Page() {
             Home Page
             <SignupButtonComponent/>
             <SearchBarComponent/>
+            <NavBar />
         </div>
     )
 }
