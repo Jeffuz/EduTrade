@@ -5,10 +5,11 @@ import { useEffect, useState } from 'react';
 
 export default function Login_Page() {
     const { googleSignIn, user } = UserAuth();
-    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { signIn } = UserAuth();
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,7 +33,7 @@ export default function Login_Page() {
         if (user != null) {
             navigate('/userprofile');
         }
-    }, [user]);
+    }, [user, navigate]);
 
     return (
         <div>
