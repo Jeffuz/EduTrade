@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../Context/AuthContext';
+import { BiMessageSquareDetail } from "react-icons/bi";
 
 const NavBar = () => {
     const { user, logOut } = UserAuth()
@@ -16,7 +17,10 @@ const NavBar = () => {
             <Link to='/' className='font-bold text-3xl'>EduTrade</Link>
             <div>
                 {user?.email ? (
-                    <button onClick={handleSignOut}>Logout</button>
+                    <div className='flex justify-center'> 
+                        <Link to="/message" className='p-4'><BiMessageSquareDetail size={25}/></Link>
+                        <button onClick={handleSignOut} className='p-4'>Logout</button>
+                    </div>
                 ) : (
                     <div>
                         <Link to='/login' className='p-4'>Login</Link>
