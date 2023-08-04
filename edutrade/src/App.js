@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthContextProvider } from './Context/AuthContext';
 
 import AboutUsPage from './Pages/About Us Page';
 import ContactUsPage from './Pages/Contact Us Page';
@@ -15,10 +16,8 @@ import ThreadPage from './Pages/Thread Page';
 import UserProfilePage from './Pages/User Profile Page';
 import LoginPage from './Pages/Login Page';
 import NavBar from './Components/NavBar';
-
-
-import { AuthContextProvider } from './Context/AuthContext';
 import Protected from './Components/Protected';
+import Footer from './Components/Footer';
 
 function App() {
   return (
@@ -41,6 +40,7 @@ function App() {
             <Route path="/userprofile" element={<Protected>< UserProfilePage /></Protected>} />
             <Route path="*" element={<NoPage />} />
           </Routes>
+          <Footer/>
         </BrowserRouter>
       </AuthContextProvider>
     </div>

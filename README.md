@@ -5,6 +5,7 @@
 npm install
 npm install -D tailwindcss
 npm install react-router-dom
+npm install react-icons --save
 
 ### Authentication
 npm install firebase
