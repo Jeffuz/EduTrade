@@ -23,7 +23,6 @@ function App() {
   return (
     <div>
       <AuthContextProvider>
-        <BrowserRouter>
           <NavBar />
           <Routes>
             <Route index element={<HomePage />} />
@@ -41,7 +40,6 @@ function App() {
             <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer/>
-        </BrowserRouter>
       </AuthContextProvider>
     </div>
   );
