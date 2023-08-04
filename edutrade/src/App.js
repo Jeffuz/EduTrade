@@ -41,6 +41,7 @@ function App() {
             <Route path="/userprofile" element={<Protected>< UserProfilePage /></Protected>} />
             <Route path="/message" element={<Protected>< Message /></Protected>} />
             <Route path="*" element={<NoPage />} />
+            <Route path="/post/:postId" element={< ThreadPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>
