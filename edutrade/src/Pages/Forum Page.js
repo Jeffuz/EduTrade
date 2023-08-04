@@ -13,26 +13,26 @@ export default function Forum_Page() {
     setIsModalOpen(false);
   };
   return (
-    <div className="h-screen flex flex-col px-4">
-        <hr className="h-px border-0 dark:bg-gray-400"></hr>
+    <div className="h-screen bg-sky-950/20 flex flex-col px-4">
+        {/* <hr className="h-px border-0 dark:bg-gray-400"></hr> */}
         <div className="flex flex-1">
             {/* Sidebar */}
-            <div className="w-1/5 py-8 border-r border-gray-400 flex-col">
+            <div className="w-1/5 py-8 border-r border-gray-900/30 flex-col">
                 {/* Sidebar content */}
                 <div className="flex flex-col gap-y-3 pr-4 justify-end"> {/* Add justify-end here */}
                     <div className="flex justify-end"> {/* Use flex and justify-end for individual buttons */}
-                        <button className="w-48 py-2 px-4 hover:text-gray-600 text-gray-500 font-bold text-left">
+                        <button className="w-48 py-2 px-4 hover:text-gray-800/70 text-gray-700 font-bold text-left">
                             Home
                         </button>
                     </div>
                     <div className="flex justify-end"> {/* Use flex and justify-end for individual buttons */}
-                        <button className="w-48 py-2 px-4 hover:text-gray-600 text-gray-500 font-bold text-left">
+                        <button className="w-48 py-2 px-4 hover:text-gray-800/70 text-gray-700 font-bold text-left">
                             Shopping
                         </button>
                     </div>
                     <div className="flex justify-end"> {/* Use flex and justify-end for individual buttons */}
                         <button 
-                            className="w-48 py-2 px-4 hover:text-gray-600 text-gray-500 font-bold text-left"
+                            className="w-48 py-2 px-4 hover:text-gray-800/70 text-gray-700 font-bold text-left"
                             onClick={openModal}
                         >
                             Post
