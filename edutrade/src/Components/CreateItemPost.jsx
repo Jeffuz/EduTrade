@@ -1,26 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import ImageUploader from "./ImageUploader";
+import { useSelector } from "react-redux";
 
 const CreateItemPost = () => {
+  const imageList = useSelector(state => state.ImageList);
+
+  const [next, setName] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [desc, setDesc] = useState(null);
+
+  const handleSubmitCreateListing = (e) => {
+    console.log(imageList, next, price, desc);
+    // Call Server / Firebase Upload Listing to GlobalList.
+  } 
   return (
     <div className="text-left m-auto">
       <h3>Create New Listing</h3>
+
       <ImageUploader/>
-      <form>
-        <label>Item Name</label>
-        <input type="text"/>
-        <br/>
 
-        <label>Price</label>
-        <input type="text"/>
+      <label>Item Name </label>
+      <input type="text" id="name" onChange={(e) => setName(e.target.value)}/>
+      <br/>
 
-        <br/>
-        <label>Description</label>
-        <input type="text"/>
-        
-        <br/>
-        <button className="bg-slate-300 rounded-lg m-3 p-1">Create Listing</button>
-      </form>
+      <label>Price $: </label>
+      <input type="text" id="price" onChange={(e) => setPrice(e.target.value)}/>
+
+      <br/>
+      <label>Description </label>
+      <input type="text" id="description" onChange={(e) => setDesc(e.target.value)}/>
+      
+      <br/>
+      <button onClick={handleSubmitCreateListing}
+      className="bg-slate-300 rounded-lg m-3 p-1" >Create Listing</button>
     </div>
   )
 }
