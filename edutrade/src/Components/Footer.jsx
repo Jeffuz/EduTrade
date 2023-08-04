@@ -12,14 +12,14 @@ const Footer = () => {
                     <span className="font-bold text-lg">EduTrade</span>
                 </div>
 
-                <div className="flex items-center mb-3 justify-center md:justify-center space-x-4">
+                <div className="flex items-center justify-center md:justify-center space-x-4">
                     <Link to="/" className="hover:text-gray-500">
                         Home
                     </Link>
                     <Link to="/aboutus" className="hover:text-gray-500">
                         About Us
                     </Link>
-                    <Link to="/contact" className="hover:text-gray-500">
+                    <Link to="/contactus" className="hover:text-gray-500">
                         Contact
                     </Link>
                 </div>
