@@ -9,9 +9,8 @@ const Footer = () => {
         <footer className="bg-gray-800 text-white py-4">
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 md:gap-4 items-center">
                 <div className="text-center md:text-left">
-                    <span className="font-bold text-lg">EduTrade</span>
+                    <Link to="/" className="font-bold text-lg">EduTrade</Link>
                 </div>
-
                 <div className="flex items-center justify-center md:justify-center space-x-4">
                     <Link to="/" className="hover:text-gray-500">
                         Home
