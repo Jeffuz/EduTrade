@@ -1,10 +1,11 @@
 import React from "react";
+import ImageUploader from "./ImageUploader";
 
 const CreateItemPost = () => {
   return (
     <div className="text-left m-auto">
       <h3>Create New Listing</h3>
-      
+      <ImageUploader/>
       <form>
         <label>Item Name</label>
         <input type="text"/>

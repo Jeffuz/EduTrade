@@ -9,3 +9,10 @@ export const clear = () => {
     type: 'CLEAR'
   }
 }
+
+export const addImage = (image) => {
+  return {
+    type: 'ADDIMAGE',
+    payload: image
+  }
+}

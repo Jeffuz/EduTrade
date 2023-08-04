@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { AuthContextProvider } from './Context/AuthContext';
 
 import AboutUsPage from './Pages/About Us Page';
