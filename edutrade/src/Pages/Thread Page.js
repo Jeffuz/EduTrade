@@ -1,11 +1,37 @@
 //  individual discussions (threads)
+import React, { useState, useEffect } from "react";
+import { firestore, firestoreGetDocs, firestoreCollection } from "../Firebase"; // Adjust imports as needed
 
-import React from "react";
+export default function PostDetails({ postId }) {
+  const [post, setPost] = useState(null);
 
-export default function Thread_Page() {
-    return (
-        <div>
-            Thread Page
-        </div>
-    )
+  useEffect(() => {
+    async function fetchPostDetails() {
+      try {
+        const docSnapshot = await firestoreGetDocs(
+          firestoreCollection(firestore, "posts", postId)
+        );
+
+        if (docSnapshot.exists()) {
+          setPost(docSnapshot.data());
+        }
+      } catch (error) {
+        console.error("Error fetching post details:", error);
+      }
+    }
+
+    fetchPostDetails();
+  }, [postId]);
+
+  if (!post) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h2>Post Details</h2>
+      <p>{post.content}</p>
+      <p>{new Date(post.timestamp.seconds * 1000).toLocaleString()}</p>
+    </div>
+  );
 }
