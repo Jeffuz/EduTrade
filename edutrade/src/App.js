@@ -39,6 +39,7 @@ function App() {
             <Route path="/thread" element={< ThreadPage />} />
             <Route path="/userprofile" element={<Protected>< UserProfilePage /></Protected>} />
             <Route path="*" element={<NoPage />} />
+            <Route path="/post/:postId" element={< ThreadPage />} />
           </Routes>
           <Footer/>
         </BrowserRouter>
