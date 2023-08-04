@@ -28,7 +28,7 @@ export default function Contact_Us_Page() {
                         <h3 className="text-xl font-bold mb-2">Email:</h3>
                         <p className="mb-4">
                             <a href="mailto:contact@example.com" className="text-blue-500 hover:underline">
-                                EduTrade25@example.com
+                                EduTrade25@gmail.com
                             </a>
                         </p>
                     </div>
