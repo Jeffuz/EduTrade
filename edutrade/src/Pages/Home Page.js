@@ -11,5 +11,6 @@ export default function Home_Page() {
                 <SearchBarComponent/>             
             </div>
         </div>
+        
     )
 }
