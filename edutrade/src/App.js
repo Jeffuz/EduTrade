@@ -19,6 +19,7 @@ import NavBar from './Components/NavBar';
 import Protected from './Components/Protected';
 import Footer from './Components/Footer';
 import Message from './Pages/Message Page';
+import CreateListingPage from './Pages/Create Listing Page';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/message" element={<Protected>< Message /></Protected>} />
             <Route path="*" element={<NoPage />} />
             <Route path="/post/:postId" element={< ThreadPage />} />
+            <Route path="/createlisting" element={<CreateListingPage/>}/>
           </Routes>
           <Footer/>
       </AuthContextProvider>

@@ -25,23 +25,44 @@ const ImageUploader = () => {
 
     if (index === imageList.length-1 && changeValue === 1)
       return;
-
+    console.log(index);
     setIndex(index + changeValue);
     
   }
   return(
-    <div>
+    <div className="">
       <h3>Upload Image</h3>        
-      {!imageList.length ? (null) : (
         <div>
-          <button onClick={(e) => setImageIndex(-1)}>Back</button>
-          <button onClick={(e) => setImageIndex(1)}>Next</button>
-          <img className="max-h-[15vw]" src={imageList[index]}/>    
+
+          <div className="flex justify-center">
+            {imageList.length > 0? 
+              <button class="bg-red-50 p-5 opacity-30 hover:opacity-90 
+              transition-all duration-100 rounded-l-full" 
+              onClick={(e) => setImageIndex(-1)}>Back</button> 
+            : null}
+
+
+            <img className="h-[50%] w-[50%] aspect-square object-cover" src={imageList[index]}/>
+            
+            {imageList.length > 0? 
+              <button class="bg-red-50 p-5 opacity-30 hover:opacity-90 
+              transition-all duration-100 rounded-r-full" 
+              onClick={(e) => setImageIndex(1)}>Next</button>    
+            : null }      
+          </div>
+
+
+
+          <label for="imageInput" className="p-5 transition-all duration-100 bg-slate-200 rounded-lg text-2xl
+                hover:brightness-75 active:bg-blue-500">
+            Upload Image
+            <input id="imageInput" type="file" accept=".png,.jpg" alt=" " className="hidden" onChange={handleUpload}/>  
+          </label>
+
         </div>
-        )}
     
 
-      <input type="file" accept=".png,.jpg" alt=" " onChange={handleUpload}/>
+      
     </div>
   )
 }

@@ -32,26 +32,30 @@ const CreateItemPost = () => {
 
   } 
   return (
-    <div className="fixed bg-slate-50 p-36 left-[50%] top-[50%] 
-    translate-x-[-50%] translate-y-[-50%]">
-      <h3>Create New Listing</h3>
+    <div className="text-center mt-0 m-36 bg-green-50 pl-10 pr-10
+    rounded-xl">
+
+      <h3 className="text-4xl m-9">Create New Listing</h3>
 
       <ImageUploader/>
-
-      <label>Item Name </label>
-      <input type="text" id="name" onChange={(e) => setName(e.target.value)}/>
-      <br/>
-
-      <label>Price $: </label>
-      <input type="text" id="price" onChange={(e) => setPrice(e.target.value)}/>
-
-      <br/>
-      <label>Description </label>
-      <input type="text" id="description" onChange={(e) => setDesc(e.target.value)}/>
       
-      <br/>
-      <button onClick={handleSubmitCreateListing}
-      className="bg-slate-300 rounded-lg m-3 p-1" >Create Listing</button>
+      <div className="text-left text-xl">
+        <br/><label>Item Name </label><br/>
+        <input type="text" id="name" onChange={(e) => setName(e.target.value)}/>
+        
+
+        <br/><label>Price $: </label><br/>
+        <input type="text" id="price" onChange={(e) => setPrice(e.target.value)}/>
+        
+        
+        <br/><label>Description </label><br/>
+        <input type="text" id="description" onChange={(e) => setDesc(e.target.value)}/>
+        
+        
+        <button onClick={handleSubmitCreateListing}
+        className="bg-slate-300 rounded-lg m-3 p-1" >Create Listing</button>        
+      </div>
+
     </div>
   )
 }
