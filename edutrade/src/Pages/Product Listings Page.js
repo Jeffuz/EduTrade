@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import SearchBarComponent from "../Components/SearchBarComponent";
 import ItemDisplay from "../Components/ItemDisplay";
-import CreateItemPost from "../Components/CreateItemPost";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addItem, clearProductList } from "../Redux/Actions/Actions";
@@ -37,9 +36,6 @@ export default function Product_Listings_Page() {
     }, []);
     return (
         <div className="bg-[#E9F7CA] text-center">
-            <div>
-                <CreateItemPost/>
-            </div>
             <div className="flex">
                 <div className="flex-1">
                     <SearchBarComponent/>
@@ -48,7 +44,7 @@ export default function Product_Listings_Page() {
             </div>
             
             {/* Display */}
-            <div className=" flex flex-wrap justify-stretch bg-[#eeee] ml-[5vw] mr-[5vw] min-h-screen h-fit">
+            <div className=" flex flex-wrap bg-[#eeee] ml-[5vw] mr-[5vw] min-h-screen h-fit">
                 {productList.map((item) => {
                     return(
                         <ItemDisplay image={item.images[0]}
