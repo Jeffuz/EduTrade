@@ -6,6 +6,7 @@ import {
     onAuthStateChanged,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    updateProfile,
 } from 'firebase/auth';
 import { auth } from '../Firebase';
 
@@ -16,20 +17,24 @@ export const AuthContextProvider = ({ children }) => {
 
     const googleSignIn = () => {
         const provider = new GoogleAuthProvider();
-        signInWithRedirect(auth, provider)
+        signInWithRedirect(auth, provider);
     };
 
     const logOut = () => {
-        return signOut(auth)
-    }
+        return signOut(auth);
+    };
 
-    const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password);
+    const createUser = async (email, password, username) => {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await updateProfile(user, { displayName: username });
+        setUser(user);
+        return user;
     };
 
     const signIn = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
-    }
+        return signInWithEmailAndPassword(auth, email, password);
+    };
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -41,7 +46,7 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ googleSignIn, logOut, user, createUser, signIn }}>
+        <AuthContext.Provider value={{ googleSignIn, logOut, user, createUser, signIn, updateProfile }}>
             {children}
         </AuthContext.Provider>
     );

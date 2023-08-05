@@ -18,6 +18,7 @@ import LoginPage from './Pages/Login Page';
 import NavBar from './Components/NavBar';
 import Protected from './Components/Protected';
 import Footer from './Components/Footer';
+import Message from './Pages/Message Page';
 
 function App() {
   return (
@@ -38,10 +39,11 @@ function App() {
             <Route path="/shoppingcart" element={< ShoppingCartPage />} />
             <Route path="/thread" element={< ThreadPage />} />
             <Route path="/userprofile" element={<Protected>< UserProfilePage /></Protected>} />
+            <Route path="/message" element={<Protected>< Message /></Protected>} />
             <Route path="*" element={<NoPage />} />
             <Route path="/post/:postId" element={< ThreadPage />} />
           </Routes>
-          <Footer/>
+          <Footer />
         </BrowserRouter>
       </AuthContextProvider>
     </div>
