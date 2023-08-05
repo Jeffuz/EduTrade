@@ -9,6 +9,11 @@ export const clear = () => {
     type: 'CLEAR'
   }
 }
+export const clearProductList = () => {
+  return {
+    type: 'CLEARPRODUCTLIST'
+  }
+}
 
 export const addImage = (image) => {
   return {

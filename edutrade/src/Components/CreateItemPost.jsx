@@ -13,10 +13,7 @@ const CreateItemPost = () => {
   const [desc, setDesc] = useState(null);
 
 
-  const handleSubmitCreateListing = async (e) => {
-    console.log(imageList, name, price, desc);
-    console.log(user?.uid);    
-
+  const handleSubmitCreateListing = async (e) => {  
     // Try Uploading listing to the database
     try {
       const listingRef = firestoreCollection(firestore, "product_listings");
@@ -26,7 +23,7 @@ const CreateItemPost = () => {
         price: price,
         description: desc,
         images: imageList,
-        timestamp: firestoreServerTimestamp(),
+        created: firestoreServerTimestamp()
       });
 
     } catch (error) {

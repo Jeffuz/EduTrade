@@ -2,7 +2,7 @@ const  ProductListings = (state = [], action) => {
   switch(action.type) {
     case 'ADDITEM':
       return state = state.concat(action.payload)
-    case 'CLEAR':
+    case 'CLEARPRODUCTLIST':
       return state = []
     default:
       return state
