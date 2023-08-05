@@ -32,7 +32,8 @@ const CreateItemPost = () => {
 
   } 
   return (
-    <div className="text-left m-auto">
+    <div className="fixed bg-slate-50 p-36 left-[50%] top-[50%] 
+    translate-x-[-50%] translate-y-[-50%]">
       <h3>Create New Listing</h3>
 
       <ImageUploader/>

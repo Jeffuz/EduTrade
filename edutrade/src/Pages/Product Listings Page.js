@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import SearchBarComponent from "../Components/SearchBarComponent";
 import ItemDisplay from "../Components/ItemDisplay";
+import CreateItemButton from "../Components/CreateItemButton";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addItem, clearProductList } from "../Redux/Actions/Actions";
@@ -36,6 +37,9 @@ export default function Product_Listings_Page() {
     }, []);
     return (
         <div className="bg-[#E9F7CA] text-center">
+            <div>
+                <CreateItemButton/>
+            </div>
             <div className="flex">
                 <div className="flex-1">
                     <SearchBarComponent/>
