@@ -8,7 +8,7 @@ const ItemDisplay = ({image, title, location, price}) => {
       className="rounded-lg object-cover h-[20rem] w-[20rem]
       border-2 border-solid border-slate-900 "/>
 
-      <p className="text-2xl ">{price}</p>
+      <p className="text-2xl ">${price}</p>
       <h3 className="text-2xl">{title}</h3>
       <p className="text-md text-slate-500">{location}</p>
       

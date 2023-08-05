@@ -3,6 +3,7 @@ import ImageUploader from "./ImageUploader";
 import { useSelector } from "react-redux";
 import { UserAuth } from "../Context/AuthContext";
 import { firestore, firestoreAddDoc, firestoreCollection, firestoreServerTimestamp} from '../Firebase';
+import { useNavigate  } from "react-router-dom";
 
 const CreateItemPost = () => {
   const { user } = UserAuth();
@@ -12,6 +13,7 @@ const CreateItemPost = () => {
   const [price, setPrice] = useState(null);
   const [desc, setDesc] = useState(null);
 
+  const navigate = useNavigate();
 
   const handleSubmitCreateListing = async (e) => {  
     // Try Uploading listing to the database
@@ -25,6 +27,7 @@ const CreateItemPost = () => {
         images: imageList,
         created: firestoreServerTimestamp()
       });
+      navigate(-1);
 
     } catch (error) {
       console.error("Error Adding Listing", error);
@@ -40,20 +43,24 @@ const CreateItemPost = () => {
       <ImageUploader/>
       
       <div className="text-left text-xl">
-        <br/><label>Item Name </label><br/>
-        <input type="text" id="name" onChange={(e) => setName(e.target.value)}/>
-        
+        <div className="m-10">
+          <br/><label>Item Name:</label>
+          <input type="text" id="name" onChange={(e) => setName(e.target.value)} className="bg-inherit w-fill border-red-500 border-2 border-solid rounded-lg"/>  
+        </div>
 
-        <br/><label>Price $: </label><br/>
-        <input type="text" id="price" onChange={(e) => setPrice(e.target.value)}/>
+        <div className="m-10">
+          <br/><label>Price $:</label>
+          <input type="text" id="price" onChange={(e) => setPrice(e.target.value)} className="bg-inherit   border-red-500 border-2 border-solid g-inherit rounded-lg"/>
+        </div>
         
-        
-        <br/><label>Description </label><br/>
-        <input type="text" id="description" onChange={(e) => setDesc(e.target.value)}/>
-        
+        <div className="m-10">
+          <br/><label>Description:</label><br/>
+          <textarea rows="4" cols="50" id="description" onChange={(e) => setDesc(e.target.value)} className="bg-inherit border-red-500 border-2 border-solid g-inherit rounded-lg"/>
+        </div>
+    
         
         <button onClick={handleSubmitCreateListing}
-        className="bg-slate-300 rounded-lg m-3 p-1" >Create Listing</button>        
+                className="bg-slate-300 rounded-lg m-3 p-1 hover:brightness-90 active:bg-slate-400" >Create Listing</button>        
       </div>
 
     </div>
