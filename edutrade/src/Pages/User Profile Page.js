@@ -1,17 +1,14 @@
 import React from "react";
 import { UserAuth } from "../Context/AuthContext";
 import UsernameUpdate from "../Components/UsernameUpdate";
+import ProfilePictureUpdate from "../Components/ProfilePictureUpdate";
 
 export default function User_Profile_Page() {
     const { user } = UserAuth();
 
     return (
-        <div className="flex justify-center p-[18%]">
-            <img
-                src={user.photoURL}
-                alt=""
-                style={{ width: "100px", height: "100px", borderRadius: "50%" }}
-            />
+        <div className="flex justify-center items-center p-[18%]">
+            <ProfilePictureUpdate />
             <div className="p-4">
                 <p className="font-bold text-4xl ">{user?.displayName}</p>
                 <p>Email: {user?.email}</p>
