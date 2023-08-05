@@ -12,8 +12,9 @@ export default function Post({ isOpen, onClose }) {
           content: postContent,
           timestamp: firestoreServerTimestamp(),
         });
-        setPostContent("");
         onClose(); // Close the modal after posting
+        setPostContent("");
+        window.location.reload(); // Refresh the page
       } catch (error) {
         console.error("Error adding post:", error);
       }
