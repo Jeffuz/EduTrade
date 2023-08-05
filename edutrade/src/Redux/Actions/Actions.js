@@ -9,3 +9,22 @@ export const clear = () => {
     type: 'CLEAR'
   }
 }
+export const clearProductList = () => {
+  return {
+    type: 'CLEARPRODUCTLIST'
+  }
+}
+
+export const addImage = (image) => {
+  return {
+    type: 'ADDIMAGE',
+    payload: image
+  }
+}
+
+export const addItem = (item) => {
+  return {
+    type: 'ADDITEM',
+    payload: item
+  }
+}

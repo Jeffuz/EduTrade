@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { AuthContextProvider } from './Context/AuthContext';
 
 import AboutUsPage from './Pages/About Us Page';
@@ -19,12 +19,12 @@ import NavBar from './Components/NavBar';
 import Protected from './Components/Protected';
 import Footer from './Components/Footer';
 import Message from './Pages/Message Page';
+import CreateListingPage from './Pages/Create Listing Page';
 
 function App() {
   return (
     <div>
       <AuthContextProvider>
-        <BrowserRouter>
           <NavBar />
           <Routes>
             <Route index element={<HomePage />} />
@@ -42,9 +42,9 @@ function App() {
             <Route path="/message" element={<Protected>< Message /></Protected>} />
             <Route path="*" element={<NoPage />} />
             <Route path="/post/:postId" element={< ThreadPage />} />
+            <Route path="/createlisting" element={<CreateListingPage/>}/>
           </Routes>
-          <Footer />
-        </BrowserRouter>
+          <Footer/>
       </AuthContextProvider>
     </div>
   );

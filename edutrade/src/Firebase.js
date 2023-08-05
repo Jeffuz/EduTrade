@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, addDoc, serverTimestamp, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, serverTimestamp, getDocs, getDoc, query, where, doc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -21,5 +21,9 @@ export const firestoreCollection = collection;
 export const firestoreAddDoc = addDoc;
 export const firestoreServerTimestamp = serverTimestamp;
 export const firestoreGetDocs = getDocs; // Export getDocs
+export const firestoreQuery = query;
+export const firestoreWhere = where;
+export const firestoreDoc = doc;
+export const firestoreGetDoc = getDoc;
 
 export default app;
