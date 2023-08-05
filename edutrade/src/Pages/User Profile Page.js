@@ -1,11 +1,12 @@
 import React from "react";
 import { UserAuth } from "../Context/AuthContext";
+import UsernameUpdate from "../Components/UsernameUpdate";
 
 export default function User_Profile_Page() {
     const { user } = UserAuth();
 
     return (
-        <div className="flex justify-center p-[18.65%]">
+        <div className="flex justify-center p-[18%]">
             <img
                 src={user.photoURL}
                 alt=""
@@ -14,6 +15,7 @@ export default function User_Profile_Page() {
             <div className="p-4">
                 <p className="font-bold text-4xl ">{user?.displayName}</p>
                 <p>Email: {user?.email}</p>
+                <UsernameUpdate />
             </div>
         </div>
     );
