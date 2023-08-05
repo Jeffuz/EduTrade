@@ -17,7 +17,7 @@ const CreateItemPost = () => {
     console.log(imageList, name, price, desc);
     console.log(user?.uid);    
 
-
+    // Try Uploading listing to the database
     try {
       const listingRef = firestoreCollection(firestore, "product_listings");
       await firestoreAddDoc(listingRef, {
@@ -28,10 +28,11 @@ const CreateItemPost = () => {
         images: imageList,
         timestamp: firestoreServerTimestamp(),
       });
+
     } catch (error) {
       console.error("Error Adding Listing", error);
     }
-    // Call Server / Firebase Upload Listing to GlobalList.
+
   } 
   return (
     <div className="text-left m-auto">

@@ -16,3 +16,10 @@ export const addImage = (image) => {
     payload: image
   }
 }
+
+export const addItem = (item) => {
+  return {
+    type: 'ADDITEM',
+    payload: item
+  }
+}
