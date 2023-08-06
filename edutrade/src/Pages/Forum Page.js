@@ -14,10 +14,10 @@ export default function Forum_Page() {
     setIsModalOpen(false);
   };
   return (
-    <div className="h-screen bg-white">
+    <div className="min-h-screen h-fit bg-white">
          <div className='flex justify-between max-w-[1500px] mx-auto px-4 pt-10'>
             <SideBar />
-            <div className="w-3/5 h-[1200px] overflow-y-auto">
+            <div className="w-3/5 h-screen overflow-y-auto">
                 {/* <div className="h-full"><PostList /></div> */}
                 <PostList />
             </div> 

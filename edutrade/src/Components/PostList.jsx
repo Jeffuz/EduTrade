@@ -21,10 +21,10 @@ function PostList() {
 
   return (
     <div>
-      <ul className="space-y-4 px-20">
+      <ul className="px-16">
         {posts.map((post) => (
           <li key={post.id} className="p-6 rounded">
-            <Link to={`/post/${post.id}`} className="block">
+            <Link to={`/post/${post.id}`} className="block border-pink-200 hover:border-pink-500 border-2 rounded-md p-4">
               <div className="cursor-pointer">
                 <h2 className="text-xl font-bold mb-2">{post.title}</h2>
                 {post.content && <p>{post.content}</p>}

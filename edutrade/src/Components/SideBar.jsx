@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function SideBar() {
     return (
-        <div className="w-1/5 flex flex-col gap-y-3  h-[1100px]"> {/* Add justify-end here */}
+        <div className="w-1/5 flex flex-col gap-y-3 min-h-screen h-fit"> {/* Add justify-end here */}
             <Link to='/'>
                 <button className="relative py-2 px-5 flex items-center text-gray-700 font-bold text-left bg-transparent group focus:text-pink-500">
                     <span className="absolute left-0 top-0 h-full w-1 bg-pink-500 transition-all duration-300 transform scale-x-0 group-focus:scale-x-100"></span>
