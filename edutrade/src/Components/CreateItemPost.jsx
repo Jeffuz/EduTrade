@@ -44,6 +44,7 @@ const CreateItemPost = () => {
         location: location,
         created: firestoreServerTimestamp()
       });
+
       navigate(-1);
 
     } catch (error) {
@@ -54,8 +55,8 @@ const CreateItemPost = () => {
   function onPlaceSelect(value) {
     if(value === null)
       return;
-    console.log(value.properties.city);
-    //setLocation(value.properties.city)
+
+    setLocation(value.properties.city)
   }
 
   return (
@@ -79,18 +80,21 @@ const CreateItemPost = () => {
           className="bg-white border-slate-500 border-2 border-solid g-inherit rounded-lg"/>
         </div>
 
-        <div className="m-10">
+        <div className="m-10 flex flex-wrap">
           <label>Location: </label>
-          <GeoapifyContext  apiKey="cd43814d5f9e463a87a3b89b2c00db26">
-              <GeoapifyGeocoderAutocomplete
-
-                placeSelect={onPlaceSelect}
-              />
-          </GeoapifyContext >     
+          <div className="w-[30%] min-w-[300px]">
+            <GeoapifyContext  apiKey="cd43814d5f9e463a87a3b89b2c00db26">
+                <GeoapifyGeocoderAutocomplete
+                  type="city"
+                  placeSelect={onPlaceSelect}
+                />
+            </GeoapifyContext >             
+          </div>
+    
         </div>
         <div className="m-10">
           <br/><label>Description:</label><br/>
-          <textarea rows="4" cols="50" id="description" placeholder="Describe your item or items" onChange={(e) => setDesc(e.target.value)} 
+          <textarea rows="4" cols="70" id="description" placeholder="Describe your item or items" onChange={(e) => setDesc(e.target.value)} 
           className="bg-white border-slate-500 border-2 border-solid g-inherit rounded-lg"/>
         </div>
     
