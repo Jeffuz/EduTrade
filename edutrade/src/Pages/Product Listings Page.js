@@ -6,24 +6,30 @@ import { UserAuth } from "../Context/AuthContext";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem, clearProductList } from "../Redux/Actions/Actions";
 
+import { useLocation } from 'react-router-dom';
+
 import { firestore, firestoreCollection, firestoreGetDocs, firestoreQuery, firestoreWhere } from '../Firebase';
 export default function Product_Listings_Page() {
+    const location = useLocation();
     const { user } = UserAuth();
     const dispatch = useDispatch();
     const productList = useSelector(state => state.ProductList);
+    const searchParams = new URLSearchParams(location.search);
 
     useEffect(() => {
+        console.log(searchParams.get('params'));
         async function checkQuery() {
+            let paramList = searchParams.get('params').split(" ");
             const productRef = firestoreCollection(firestore, "product_listings");
-            const q = firestoreQuery(productRef, firestoreWhere("tags", "array-contains-any", ["pills"]));
+            const q = firestoreQuery(productRef, firestoreWhere("tags", "array-contains-any", paramList));
 
             const querySnapShot = await firestoreGetDocs(q);
             querySnapShot.forEach((doc) => {
                 
                 let data = doc.data();
                 console.log(data.uid + " => " + user.uid);
-                if(data.uid == user.uid)
-                    return;
+                // if(data.uid == user.uid)
+                //     return;
 
                 let object = {
                     images: data.images,

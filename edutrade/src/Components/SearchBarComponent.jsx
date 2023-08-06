@@ -14,9 +14,9 @@ const SearchBarComponent = () => {
   const [location, setLocation] = useState(null);
 
   const handleClick = () => {
-    
+
     dispatch(set(search, location));
-    navigate("/productlistings", {state:{searchString: search, locationString: location} });
+    navigate(`/productlistings?params=${search}&location=${location}`);
   }
 
   return(
