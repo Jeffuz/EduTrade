@@ -19,12 +19,17 @@ const CreateItemPost = () => {
     // Try Uploading listing to the database
     try {
       const listingRef = firestoreCollection(firestore, "product_listings");
+      var lowerCase = name.toLowerCase();
+
+      let tags = lowerCase.split(" ");
+
       await firestoreAddDoc(listingRef, {
         uid: user.uid,
-        name: name,
+        name: lowerCase,
         price: price,
         description: desc,
         images: imageList,
+        tags: tags,
         created: firestoreServerTimestamp()
       });
       navigate(-1);

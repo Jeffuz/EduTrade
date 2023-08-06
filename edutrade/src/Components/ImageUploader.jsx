@@ -8,13 +8,11 @@ const ImageUploader = () => {
 
   const [index, setIndex] = useState(0);
 
-  const handleUpload = (e) => {
-    console.log(e.target.files[0]);
+  const handleUpload = (e) => {;
     var fReader = new FileReader();
     
     fReader.readAsDataURL(e.target.files[0]);
 
-    console.log(typeof(imageList));
     fReader.onloadend = function(event){
       dispatch(addImage(event.target.result));
     }

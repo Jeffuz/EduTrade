@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { set } from "../Redux/Actions/Actions";
 
 import { useDispatch } from "react-redux";
@@ -7,12 +8,15 @@ import { useDispatch } from "react-redux";
 
 const SearchBarComponent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [search, setSearch] = useState(null);
   const [location, setLocation] = useState(null);
 
   const handleClick = () => {
+    
     dispatch(set(search, location));
+    navigate("/productlistings", {state:{searchString: search, locationString: location} });
   }
 
   return(
