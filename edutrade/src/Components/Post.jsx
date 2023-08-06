@@ -67,33 +67,34 @@ export default function Post({ isOpen, onClose }) {
           value={postTitle}
           onChange={(e) => setPostTitle(e.target.value)}
         />
-        <label className="block mb-2">
-          <input
-            type="radio"
-            value="text"
-            checked={postOption === "text"}
-            onChange={() => setPostOption("text")}
-          />
-          Post Text
-        </label>
-        <label className="block mb-2">
-          <input
-            type="radio"
-            value="image"
-            checked={postOption === "image"}
-            onChange={() => setPostOption("image")}
-          />
-          Post Image
-        </label>
-        <label className="block mb-2">
-          <input
-            type="radio"
-            value="link"
-            checked={postOption === "link"}
-            onChange={() => setPostOption("link")}
-          />
-          Post Link
-        </label>
+        <div className="flex space-x-4 mb-2">
+          <button
+            className={`px-4 py-2 rounded font-bold ${
+              postOption === "text" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
+            } focus:text-pink-500 focus:border-pink-500`}
+            onClick={() => setPostOption("text")}
+          >
+            Text
+          </button>
+          <button
+            className={`px-4 py-2 rounded font-bold ${
+              postOption === "image" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
+            } focus:text-pink-500 focus:border-pink-500`}
+            onClick={() => setPostOption("image")}
+          >
+            Image
+          </button>
+          <button
+            className={`px-4 py-2 rounded font-bold ${
+              postOption === "link" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
+            } focus:text-pink-500 focus:border-pink-500`}
+            onClick={() => setPostOption("link")}
+          >
+            Link
+          </button>
+        </div>
+
+
         {postOption === "text" && (
           <textarea
             rows="4"
