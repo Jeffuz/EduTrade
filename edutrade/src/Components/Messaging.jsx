@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import Message from './Message';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { firestore } from '../Firebase';
@@ -18,10 +18,26 @@ const Messaging = () => {
                 messages.push({ ...doc.data(), id: doc.id });
             });
             setMessages(messages);
-            scroll.current.scrollTop = scroll.current.scrollHeight;
         });
         return () => unsubscribe();
     }, []);
+
+    useEffect(() => {
+        scroll.current.scrollTop = scroll.current.scrollHeight;
+    }, [messages]);
+
+    useEffect(() => {
+        const handleImageLoad = () => {
+            scroll.current.scrollTop = scroll.current.scrollHeight;
+        };
+
+        const images = scroll.current.querySelectorAll('img');
+        images.forEach((image) => {
+            if (!image.complete) {
+                image.onload = handleImageLoad;
+            }
+        });
+    }, [messages]);
 
     return (
         <div className="p-6">
@@ -31,9 +47,8 @@ const Messaging = () => {
                 ))}
             </div>
             <SendMessage scroll={scroll} />
-            <span ref={scroll}></span>
         </div>
-    )
-}
+    );
+};
 
-export default Messaging
+export default Messaging;
