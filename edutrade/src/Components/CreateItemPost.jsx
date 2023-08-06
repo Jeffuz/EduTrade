@@ -68,19 +68,19 @@ const CreateItemPost = () => {
       <ImageUploader/>
       
       <div className="text-left text-xl">
-        <div className="m-10">
+        <div className="m-10 flex justify-left flex-wrap">
           <br/><label>Item Name:</label>
           <input type="text" id="name" placeholder="Enter Title" onChange={(e) => setName(e.target.value)} 
           className="bg-white w-fill border-slate-500 border-2 border-solid rounded-lg"/>  
         </div>
 
-        <div className="m-10">
+        <div className="m-10 flex justify-left flex-wrap">
           <br/><label>Price $:</label>
           <input type="text" id="price" placeholder="Enter Price" onChange={(e) => setPrice(e.target.value)} 
           className="bg-white border-slate-500 border-2 border-solid g-inherit rounded-lg"/>
         </div>
 
-        <div className="m-10 flex flex-wrap">
+        <div className="m-10 flex justify-left flex-wrap">
           <label>Location: </label>
           <div className="w-[30%] min-w-[300px]">
             <GeoapifyContext  apiKey="cd43814d5f9e463a87a3b89b2c00db26">

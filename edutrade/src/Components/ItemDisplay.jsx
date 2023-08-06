@@ -5,8 +5,8 @@ const ItemDisplay = ({image, title, location, price, docID}) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
-    
-    navigate(`/productdetails?${docID}`);
+
+    navigate(`/productdetails?listingID=${docID}`);
   }
   return(
     <div onClick={handleClick} className="p-2 text-left min-h-[15vw] min-w-[15vw] 

@@ -69,14 +69,17 @@ export default function Product_Listings_Page() {
             
             {/* Display */}
             <div className=" flex flex-wrap bg-[#eeee] ml-[5vw] mr-[5vw] min-h-screen h-fit">
-                {productList.map((item) => {
+                {productList.map((item, index) => {
                     return(
-                        <ItemDisplay image={item.images[0]}
+                        <div key={index}>
+                            <ItemDisplay image={item.images[0]}
                                     title={item.name}
                                     location={item.location}
                                     price={item.price}
                                     docID={item.documentID}
-                                    />                        
+                            />  
+                        </div>
+                      
                     )
                 })}
             </div>
