@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
-import { AuthContextProvider, UserAuth } from './Context/AuthContext';
+import { AuthContextProvider } from './Context/AuthContext';
 
 import AboutUsPage from './Pages/About Us Page';
 import ContactUsPage from './Pages/Contact Us Page';
