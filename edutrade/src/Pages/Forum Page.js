@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Post from '../Components/Post'; 
 import PostList from '../Components/PostList'; 
 import SideBar from '../Components/SideBar'; 
-import { Icon } from '@iconify/react';
 
 export default function Forum_Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
