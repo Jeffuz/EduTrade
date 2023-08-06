@@ -5,7 +5,7 @@ const ItemDisplay = ({image, title, location, price, docID}) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
-
+    
     navigate(`/productdetails?${docID}`);
   }
   return(
