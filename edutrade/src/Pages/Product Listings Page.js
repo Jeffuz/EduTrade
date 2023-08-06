@@ -9,6 +9,7 @@ import { addItem, clearProductList } from "../Redux/Actions/Actions";
 import { useLocation } from 'react-router-dom';
 
 import { firestore, firestoreCollection, firestoreGetDocs, firestoreQuery, firestoreWhere } from '../Firebase';
+import { sendSignInLinkToEmail } from "firebase/auth";
 export default function Product_Listings_Page() {
     const location = useLocation();
     const { user } = UserAuth();
@@ -27,7 +28,7 @@ export default function Product_Listings_Page() {
             querySnapShot.forEach((doc) => {
                 
                 let data = doc.data();
-                console.log(data.uid + " => " + user.uid);
+                console.log(doc.id);
                 // if(data.uid == user.uid)
                 //     return;
 
@@ -37,6 +38,7 @@ export default function Product_Listings_Page() {
                     price: data.price,
                     uid: data.uid,
                     description: data.description,
+                    documentID: doc.id
                 }
 
                 dispatch(addItem(object));
@@ -85,6 +87,7 @@ export default function Product_Listings_Page() {
                                     title={item.name}
                                     location="Place"
                                     price={item.price}
+                                    docID={item.documentID}
                                     />                        
                     )
                 })}

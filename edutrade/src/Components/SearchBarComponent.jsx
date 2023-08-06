@@ -3,8 +3,7 @@ import { useNavigate } from "react-router";
 import { set } from "../Redux/Actions/Actions";
 
 import { useDispatch } from "react-redux";
-
-
+import { clearProductList } from "../Redux/Actions/Actions";
 
 const SearchBarComponent = () => {
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ const SearchBarComponent = () => {
   const [location, setLocation] = useState(null);
 
   const handleClick = () => {
-
+    dispatch(clearProductList());
     dispatch(set(search, location));
     navigate(`/productlistings?params=${search}&location=${location}`);
   }

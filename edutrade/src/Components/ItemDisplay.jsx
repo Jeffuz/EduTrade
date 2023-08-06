@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const ItemDisplay = ({image, title, location, price}) => {
+const ItemDisplay = ({image, title, location, price, docID}) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+
+    navigate(`/productdetails?${docID}`);
+  }
   return(
-    <div className="p-2 text-left min-h-[15vw] min-w-[15vw] 
+    <div onClick={handleClick} className="p-2 text-left min-h-[15vw] min-w-[15vw] 
     max-h-fit max-w-[20rem] flex-auto">
       <img src={image} alt="Item Image" 
       className="rounded-lg object-cover h-[20rem] w-[20rem]
