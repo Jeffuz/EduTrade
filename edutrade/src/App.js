@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
-import { AuthContextProvider } from './Context/AuthContext';
+import { AuthContextProvider, UserAuth } from './Context/AuthContext';
 
 import AboutUsPage from './Pages/About Us Page';
 import ContactUsPage from './Pages/Contact Us Page';
@@ -25,26 +25,26 @@ function App() {
   return (
     <div>
       <AuthContextProvider>
-          <NavBar />
-          <Routes>
-            <Route index element={<HomePage />} />
-            <Route path="/" element={< HomePage />} />
-            <Route path="/aboutus" element={< AboutUsPage />} />
-            <Route path="/contactus" element={< ContactUsPage />} />
-            <Route path="/forum" element={< ForumPage />} />
-            <Route path="/login" element={< LoginPage />} />
-            <Route path="/signup" element={< SignupPage />} />
-            <Route path="/productdetails" element={< ProductDetailsPage />} />
-            <Route path="/productlistings" element={< ProductListingsPage />} />
-            <Route path="/shoppingcart" element={< ShoppingCartPage />} />
-            <Route path="/thread" element={< ThreadPage />} />
-            <Route path="/userprofile" element={<Protected>< UserProfilePage /></Protected>} />
-            <Route path="/message" element={<Protected>< Message /></Protected>} />
-            <Route path="*" element={<NoPage />} />
-            <Route path="/post/:postId" element={< ThreadPage />} />
-            <Route path="/createlisting" element={<CreateListingPage/>}/>
-          </Routes>
-          <Footer/>
+        <NavBar />
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="/" element={< HomePage />} />
+          <Route path="/aboutus" element={< AboutUsPage />} />
+          <Route path="/contactus" element={< ContactUsPage />} />
+          <Route path="/forum" element={< ForumPage />} />
+          <Route path="/login" element={< LoginPage />} />
+          <Route path="/signup" element={< SignupPage />} />
+          <Route path="/productdetails" element={< ProductDetailsPage />} />
+          <Route path="/productlistings" element={< ProductListingsPage />} />
+          <Route path="/shoppingcart" element={< ShoppingCartPage />} />
+          <Route path="/thread" element={< ThreadPage />} />
+          <Route path="/userprofile" element={<Protected><UserProfilePage /></Protected>} />
+          <Route path="/message" element={<Protected>< Message /></Protected>} />
+          <Route path="*" element={<NoPage />} />
+          <Route path="/post/:postId" element={< ThreadPage />} />
+          <Route path="/createlisting" element={<CreateListingPage />} />
+        </Routes>
+        <Footer />
       </AuthContextProvider>
     </div>
   );
