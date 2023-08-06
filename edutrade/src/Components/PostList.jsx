@@ -8,7 +8,6 @@ function PostList() {
   useEffect(() => {
     async function fetchPosts() {
       const querySnapshot = await firestoreGetDocs(firestoreCollection(firestore, "posts"));
-
       const postData = [];
       querySnapshot.forEach((doc) => {
         postData.push({ id: doc.id, ...doc.data() });

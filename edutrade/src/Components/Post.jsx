@@ -45,12 +45,14 @@ export default function Post({ isOpen, onClose }) {
         }
 
         await firestoreAddDoc(postRef, postData);
+        onClose();
         setPostTitle("");
         setPostContent("");
         setSelectedImage(null);
         setPostOption("text");
         setLinkUrl("");
-        onClose();
+        
+        window.location.reload(); // Refresh the page
       } catch (error) {
         console.error("Error adding post:", error);
       }
