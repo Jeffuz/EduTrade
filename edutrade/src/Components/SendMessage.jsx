@@ -20,16 +20,18 @@ const SendMessage = ({ scroll }) => {
         scroll.current.scrollIntoView({ behavior: 'smooth' })
     }
     return (
-        <form onSubmit={SendMessage}>
+        <form onSubmit={SendMessage} className='flex items-center p-4'>
             <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 type='text'
                 placeholder='Message'
+                className="flex-grow px-4 py-2 mr-2 border rounded-full focus:outline-none focus:ring focus:border-blue-300"
             >
             </input>
             <button
                 type='submit'
+                className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none"
             >
                 Send
             </button>

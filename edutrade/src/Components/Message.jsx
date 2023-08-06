@@ -1,12 +1,21 @@
 import React from 'react'
 
-const Message = ({ message }) => {
-    return (
-        <div>
-            <div className=''>
-                <p className='text-sm m-1'>{message.name}</p>
+const Message = ({ message, currentUser }) => {
+    const isSentByCurrentUser = message.uid === currentUser.uid;
 
-                <p className='p-4 border rounded-md shadow-md'>{message.text}</p>
+    return (
+        <div
+            className={`flex flex-col mb-4 ${isSentByCurrentUser ? "items-end" : "items-start"
+                }`}
+        >
+            {!isSentByCurrentUser && (
+                <p className="text-sm font-bold mb-1">{message.name}</p>
+            )}
+            <div
+                className={`${isSentByCurrentUser ? "bg-blue-500 text-white" : "bg-gray-200"
+                    } p-4 rounded-md shadow-md`}
+            >
+                <p>{message.text}</p>
             </div>
         </div>
     )
