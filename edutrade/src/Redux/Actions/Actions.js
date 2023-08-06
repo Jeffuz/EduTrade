@@ -28,3 +28,17 @@ export const addItem = (item) => {
     payload: item
   }
 }
+
+export const setSelected = (item) => {
+  return {
+    type: 'SETSELECTED',
+    payload: item
+  }
+}
+
+export const clearSelected = () => {
+  return {
+    type: 'CLEARSELECTED',
+  }
+}
+
