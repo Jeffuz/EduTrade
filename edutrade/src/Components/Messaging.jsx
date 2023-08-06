@@ -18,10 +18,13 @@ const Messaging = () => {
                 messages.push({ ...doc.data(), id: doc.id });
             });
             setMessages(messages);
-            scroll.current.scrollTop = scroll.current.scrollHeight;
         });
         return () => unsubscribe();
     }, []);
+
+    useEffect(() => {
+        scroll.current.scrollTop = scroll.current.scrollHeight;
+    }, [messages]);
 
     return (
         <div className="p-6">
@@ -31,9 +34,8 @@ const Messaging = () => {
                 ))}
             </div>
             <SendMessage scroll={scroll} />
-            <span ref={scroll}></span>
         </div>
     )
 }
 
-export default Messaging
+export default Messaging;
