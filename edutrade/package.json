@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@formspree/react": "^2.5.0",
+    "@geoapify/geocoder-autocomplete": "^1.5.1",
+    "@geoapify/react-geocoder-autocomplete": "^1.5.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
