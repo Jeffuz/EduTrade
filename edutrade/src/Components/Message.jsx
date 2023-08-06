@@ -12,8 +12,10 @@ const Message = ({ message, currentUser }) => {
                 <p className="text-sm font-bold mb-1">{message.name}</p>
             )}
             <div
-                className={`${isSentByCurrentUser ? "bg-blue-500 text-white" : "bg-gray-200"
-                    } p-4 rounded-md shadow-md`}
+                className={`${isSentByCurrentUser
+                    ? "bg-blue-500 text-white rounded-tr-none"
+                    : "bg-gray-200 text-black rounded-tl-none"
+                    } p-4 rounded-2xl shadow-md`}
             >
                 <p>{message.text}</p>
             </div>

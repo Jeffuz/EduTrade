@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { auth, firestore, firestoreAddDoc, firestoreCollection, firestoreServerTimestamp } from '../Firebase'
+import { Icon } from '@iconify/react';
 
 const SendMessage = ({ scroll }) => {
     const [input, setInput] = useState('')
@@ -33,7 +34,7 @@ const SendMessage = ({ scroll }) => {
                 type='submit'
                 className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none"
             >
-                Send
+                <Icon icon="iconamoon:send" width="24" height="24" />
             </button>
         </form>
     )

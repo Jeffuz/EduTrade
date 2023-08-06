@@ -30,7 +30,7 @@ const Messaging = () => {
         <div className="p-6">
             <div className="h-[39.3rem] overflow-y-auto mb-4" ref={scroll}>
                 {messages.map((message) => (
-                    <Message key={message.id} message={message} currentUser={user} />
+                    <Message key={message.id} message={message} currentUser={user}/>
                 ))}
             </div>
             <SendMessage scroll={scroll} />
