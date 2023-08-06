@@ -21,15 +21,21 @@ function PostList() {
 
   return (
     <div>
-      <ul className="px-16">
+      <ul className="px-16 space-y-6">
         {posts.map((post) => (
-          <li key={post.id} className="p-6 rounded">
-            <Link to={`/post/${post.id}`} className="block border-pink-200 hover:border-pink-500 border-2 rounded-md p-4">
+          <li key={post.id} className="rounded">
+            <Link to={`/post/${post.id}`} className="block p-4 border-2 border-pink-200 hover:border-pink-500 rounded-md">
               <div className="cursor-pointer">
                 <h2 className="text-xl font-bold mb-2">{post.title}</h2>
                 {post.content && <p>{post.content}</p>}
                 {post.image && <img src={post.image} alt="Post Image" className="max-h-40 mb-2" />}
-                {post.link && <a href={post.link}>{post.link}</a>}
+                {post.link && (
+                  <div className="cursor-pointer break-words">
+                    <a href={post.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                      {post.link}
+                    </a>
+                  </div>
+                )}
                 <p className="text-gray-500 text-sm">
                   {new Date(post.timestamp.seconds * 1000).toLocaleString()}
                 </p>

@@ -1,0 +1,3 @@
+.button-active .group-focus\:scale-x-100 {
+    transform: scale(1, 1);
+}

@@ -1,37 +1,58 @@
-//  individual discussions (threads)
 import React, { useState, useEffect } from "react";
-import { firestore, firestoreGetDocs, firestoreCollection } from "../Firebase"; // Adjust imports as needed
+import { useParams } from "react-router-dom";
+import { firestore, firestoreCollection, firestoreGetDocs } from "../Firebase";
+import PostDetails from "../Components/PostDetails"; // Import the PostDetails component
 
-export default function PostDetails({ postId }) {
-  const [post, setPost] = useState(null);
+export default function ThreadPage() {
+  const { postId } = useParams(); // Get the postId from the URL
+  const [posts, setPosts] = useState([]);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
-    async function fetchPostDetails() {
+    async function fetchPosts() {
       try {
-        const docSnapshot = await firestoreGetDocs(
-          firestoreCollection(firestore, "posts", postId)
+        const querySnapshot = await firestoreGetDocs(
+          firestoreCollection(firestore, "posts")
         );
 
-        if (docSnapshot.exists()) {
-          setPost(docSnapshot.data());
-        }
+        const postData = [];
+        querySnapshot.forEach((doc) => {
+          postData.push({ id: doc.id, ...doc.data() });
+        });
+
+        setPosts(postData);
       } catch (error) {
-        console.error("Error fetching post details:", error);
+        console.error("Error fetching posts:", error);
       }
     }
 
-    fetchPostDetails();
-  }, [postId]);
+    fetchPosts();
+  }, []);
 
-  if (!post) {
-    return <div>Loading...</div>;
-  }
+  const handlePostClick = (postId) => {
+    const selected = posts.find((post) => post.id === postId);
+    setSelectedPost(selected);
+  };
 
   return (
-    <div>
-      <h2>Post Details</h2>
-      <p>{post.content}</p>
-      <p>{new Date(post.timestamp.seconds * 1000).toLocaleString()}</p>
+    <div className="thread-page">
+      <div className="post-list">
+        <h2>Post List</h2>
+        <ul>
+          {posts.map((post) => (
+            <li key={post.id} onClick={() => handlePostClick(post.id)}>
+              {post.title}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="post-details">
+        {selectedPost ? (
+          <PostDetails postId={selectedPost.id} />
+        ) : (
+          <p>Select a post to view its details</p>
+        )}
+      </div>
     </div>
   );
 }
