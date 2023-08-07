@@ -25,8 +25,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBarComponent from "../Components/SearchBarComponent";
 import HorizontalDisplayItems from "../Components/HorizontalDisplayItems";
+import { UserAuth } from '../Context/AuthContext';
+import CreateItemButton from '../Components/CreateItemButton';
 export default function Home_Page() {
     const backgroundImageUrl = 'https://images.pexels.com/photos/6146823/pexels-photo-6146823.jpeg';
+    const {user} = UserAuth();
 
     return (
         <div className='p-36 min-h-screen h-fit bg-cover bg-center' style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
@@ -40,6 +43,7 @@ export default function Home_Page() {
                     Go to Forum
                 </Link>
                 <HorizontalDisplayItems/>
+                {!user?.email? (null): <CreateItemButton/>}
             </div>
         </div>
     );

@@ -90,6 +90,7 @@ export default function HorizontalDisplayItems() {
 
   }
   const handleMouseLeave = () => {
+    setIsMouseDown(false);
     document.body.style.cursor = "default";
   }
   return (

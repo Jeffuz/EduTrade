@@ -16,17 +16,17 @@ const ImageDisplay = ({imageList}) => {
   return (
     <div className="flex justify-center">
       {imageList.length > 0? 
-        <button class="bg-red-50 p-5 opacity-30 hover:opacity-90 
-        transition-all duration-100 rounded-l-full" 
+        <button class="relative left-[4rem] bg-red-50 p-5 opacity-30 hover:opacity-100 
+        transition-all duration-100" 
         onClick={(e) => setImageIndex(-1)}>Back</button> 
       : null}
 
 
-      <img className=" h-full w-full aspect-square object-cover" src={imageList[index]}/>
+      <img className=" h-[90%] w-[90%] aspect-square object-cover" src={imageList[index]}/>
       
       {imageList.length > 0? 
-        <button className="bg-red-50 p-5 opacity-30 hover:opacity-90 
-        transition-all duration-100 rounded-r-full" 
+        <button className="relative right-[4rem] bg-red-50 p-5 opacity-30 hover:opacity-90 
+        transition-all duration-100" 
         onClick={(e) => setImageIndex(1)}>Next</button>    
       : null }      
     </div>
