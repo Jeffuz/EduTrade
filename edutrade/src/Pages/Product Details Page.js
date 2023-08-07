@@ -3,7 +3,7 @@ import { UserAuth } from "../Context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { firestore, firestoreGetDoc, firestoreDoc, firestoreCollection, firestoreAddDoc, firestoreQuery, firestoreWhere, firestoreGetDocs} from '../Firebase';
+import { firestore, firestoreGetDoc, firestoreDoc, firestoreCollection, firestoreAddDoc, firestoreServerTimestamp, firestoreQuery, firestoreWhere, firestoreGetDocs} from '../Firebase';
 import { setSelected } from "../Redux/Actions/Actions";
 
 import ImageDisplay from "../Components/ImageDisplay";
@@ -33,29 +33,27 @@ export default function Product_Details_Page() {
         getListing();
     }, []);
 
-    const handleClick = async() => {
+    const handleClick = async () => {
         try {
-            let isExists = false;
-
-            const userRef = firestoreCollection(firestore, "chat_users");
-            const q = firestoreQuery(userRef, firestoreWhere("uid", "==", selectedItem.uid));
-
-            const querySnap = await firestoreGetDocs(q);
-            
-            // Check if display name already exists
-            querySnap.forEach((item) => {
-                isExists = true;         
-            })
-
-            if(!isExists){ 
-                await firestoreAddDoc(userRef, { 
-                    displayName: user.displayName,
-                    uid: selectedItem.uid });
-            }           
+            const currentUser = user;
+            const seller = selectedItem;
+    
+            const chatRoomId = `${currentUser.uid}_${seller.uid}`;
+    
+            const chatRoomDoc = await firestoreGetDoc(firestoreDoc(firestore, 'chats', chatRoomId));
+    
+            if (!chatRoomDoc.exists()) {
+                await firestoreAddDoc(firestoreCollection(firestore, 'chats'), {
+                    chatRoomId,
+                    users: [currentUser.uid, seller.uid],
+                    createdAt: firestoreServerTimestamp(),
+                });
+            }
         } catch (error) {
-            console.error("Error Adding Listing", error);
+            console.error('Error creating chat room', error);
         }
-    }
+    };
+    
     const goBack = () => {
         navigate(-1);
     }
@@ -72,7 +70,6 @@ export default function Product_Details_Page() {
                     <h3 className="text-3xl text-ellipsis">{selectedItem.name}</h3>                    
                 </div>
 
-                
                 <p className="text-lg text-center text-slate-600">{selectedItem.location}</p>
                 <div className="m-5">
                     <p className="text-2xl">{selectedItem.description}</p>
