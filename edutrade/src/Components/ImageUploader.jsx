@@ -45,7 +45,7 @@ const ImageUploader = () => {
 
           <ImageDisplay imageList={imageList}/>
 
-          <label for="imageInput" className="p-5 transition-all duration-100 bg-slate-200 rounded-lg text-2xl
+          <label for="imageInput" className="p-5 transition-all duration-100 bg-slate-200 rounded-lg text-[calc(1vw+5px)]
                 hover:brightness-75 active:bg-blue-500">
             Upload Image
             <input id="imageInput" type="file" accept=".png,.jpg" alt=" " className="hidden" onChange={handleUpload}/>  
