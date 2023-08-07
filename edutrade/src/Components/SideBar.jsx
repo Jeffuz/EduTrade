@@ -19,11 +19,12 @@ export default function SideBar() {
 
             <NavLink to='/forum' activeClassName="button-active">
                 <button className={`relative py-2 px-5 flex items-center text-gray-700 font-bold text-left bg-transparent group focus:text-pink-500 ${isForumActive ? 'button-active' : ''}`}>
-                    <span className={`absolute left-0 top-0 h-full w-1 bg-pink-500 transition-all duration-300 transform scale-x-0 ${isForumActive ? 'group-focus:scale-x-100' : ''}`}></span>
+                    <span className={`absolute left-0 top-0 h-full w-1 transition-all duration-300 ${isForumActive ? 'bg-pink-500 transform scale-x-100' : 'bg-gray-700 transform scale-x-0'}`}></span>
                     <Icon icon="mdi:compass-outline" width="18" className={`mr-2 ${isForumActive ? 'text-pink-500' : 'text-gray-700'}`} />
                     <span className={`${isForumActive ? 'text-pink-500' : 'text-gray-700'}`}>Explore Topics</span>
                 </button>
             </NavLink>
+
 
             <button className="relative py-2 px-5 flex items-center text-gray-700 font-bold text-left bg-transparent group focus:text-pink-500">
                 <span className="absolute left-0 top-0 h-full w-1 bg-pink-500 transition-all duration-300 transform scale-x-0 group-focus:scale-x-100"></span>
