@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
+import { UserAuth } from "../Context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
-import { firestore, firestoreGetDoc, firestoreDoc} from '../Firebase';
+import { useNavigate } from "react-router-dom";
+import { firestore, firestoreGetDoc, firestoreDoc, firestoreCollection, firestoreAddDoc, firestoreQuery, firestoreWhere, firestoreGetDocs} from '../Firebase';
 import { setSelected } from "../Redux/Actions/Actions";
 
 import ImageDisplay from "../Components/ImageDisplay";
 
 export default function Product_Details_Page() {
+    const navigate = useNavigate();
+    const { user } = UserAuth();
     const dispatch = useDispatch();
     const selectedItem = useSelector(state => state.SelectedItem);
 
@@ -16,7 +19,7 @@ export default function Product_Details_Page() {
 
     useEffect(()=> {
         let id = params.get('listingID');
-        
+
         async function getListing() {
             try{
                 let productRef = await firestoreGetDoc(firestoreDoc(firestore, "product_listings", id));      
@@ -30,8 +33,36 @@ export default function Product_Details_Page() {
         getListing();
     }, []);
 
+    const handleClick = async() => {
+        try {
+            let isExists = false;
+
+            const userRef = firestoreCollection(firestore, "chat_users");
+            const q = firestoreQuery(userRef, firestoreWhere("uid", "==", selectedItem.uid));
+
+            const querySnap = await firestoreGetDocs(q);
+            
+            // Check if display name already exists
+            querySnap.forEach((item) => {
+                isExists = true;         
+            })
+
+            if(!isExists){ 
+                await firestoreAddDoc(userRef, { 
+                    displayName: user.displayName,
+                    uid: selectedItem.uid });
+            }           
+        } catch (error) {
+            console.error("Error Adding Listing", error);
+        }
+    }
+    const goBack = () => {
+        navigate(-1);
+    }
+
     return (
         <div className="ml-[20%] mr-[20%]">
+            <button className="bg-red-50 p-10" onClick={goBack}>Back</button>
             {selectedItem != null? 
             <div className="text-left m-auto">
 
@@ -50,7 +81,7 @@ export default function Product_Details_Page() {
             </div>
             : null}
 
-
+            <button className="bg-red-50 p-10" onClick={handleClick}>Message</button>
         </div>
     )
 }

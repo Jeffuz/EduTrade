@@ -25,7 +25,7 @@ const ImageDisplay = ({imageList}) => {
       <img className="h-[50%] w-[50%] aspect-square object-cover" src={imageList[index]}/>
       
       {imageList.length > 0? 
-        <button class="bg-red-50 p-5 opacity-30 hover:opacity-90 
+        <button className="bg-red-50 p-5 opacity-30 hover:opacity-90 
         transition-all duration-100 rounded-r-full" 
         onClick={(e) => setImageIndex(1)}>Next</button>    
       : null }      

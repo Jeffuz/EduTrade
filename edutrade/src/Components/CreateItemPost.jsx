@@ -44,7 +44,7 @@ const CreateItemPost = () => {
       let tags = lowerCase.split(" ");
       if(!price.match(checkPriceString))
         {
-          alert("Price is not num");
+          alert("Price is not num");  
           return;
         }
       await firestoreAddDoc(listingRef, {
@@ -55,6 +55,7 @@ const CreateItemPost = () => {
         images: imageList,
         tags: tags,
         location: location,
+        displayName: user.displayName, 
         created: firestoreServerTimestamp()
       });
 
