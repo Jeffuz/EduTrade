@@ -7,6 +7,7 @@ import ItemDisplay from "./ItemDisplay";
 import { firestore, firestoreCollection, firestoreLimit, firestoreQuery, firestoreOrderBy, firestoreGetDocs } from '../Firebase';
 import { useNavigate } from "react-router";
 
+
 export default function HorizontalDisplayItems() {
   const navigate = useNavigate();
 
@@ -51,26 +52,58 @@ export default function HorizontalDisplayItems() {
     navigate("/productlistings");
   }
 
+  const handleScroll = (scrollDirection) => {
+    const container = document.querySelector('.flex.overflow-x-auto');
+    if (container) {
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      const scrollIncrement = 5; 
+      const scrollIntervalTime = 12; 
+  
+      let currentScrollLeft = container.scrollLeft;
+      const scrollInterval = setInterval(() => {
+        if (scrollDirection === 'right') {
+          currentScrollLeft += scrollIncrement;
+          if (currentScrollLeft >= maxScrollLeft) {
+            clearInterval(scrollInterval);
+          }
+        } else if (scrollDirection === 'left') {
+          currentScrollLeft -= scrollIncrement;
+          if (currentScrollLeft <= 0) {
+            clearInterval(scrollInterval);
+          }
+        }
+        container.scrollLeft = currentScrollLeft;
+      }, scrollIntervalTime);
+    }
+  };
+
   return (
-    <div className="border-red-900 border-4 border-solid
-     bg-gradient-to-r from-transparent from-75%  to-slate-100">
-
-      <div className="flex overflow-x-auto z-[-1]">
-        {productList.map((item, index) => {
-          return(
+    <div className="border-gray-300/20 hover:border-gray-300/80 px-4 py-2 rounded-lg border-4 to-slate-100">
+      <div className="flex overflow-x-hidden z-[-1]">
+        <div
+          className="flex overflow-x-auto"
+          onMouseEnter={() => handleScroll('right')}
+          onMouseLeave={() => handleScroll('left')}
+        >
+          {productList.map((item, index) => (
             <div key={index}>
-                <ItemDisplay image={item.images[0]}
-                        title={item.name}
-                        location={item.location}
-                        price={item.price}
-                        docID={item.documentID}
-                />  
+              <ItemDisplay
+                image={item.images[0]}
+                title={item.name}
+                location={item.location}
+                price={item.price}
+                docID={item.documentID}
+              />
             </div>
-          )
-        })}
-        <button className="h-fill bg-red-100 p-5"onClick={handleClick}>More</button>        
+          ))}
+        {/* "More" button directing to another page */}
+        <a href="/other-page" className="h-full bg-red-100 p-2 flex items-center">
+          More
+        </a>
       </div>
-
     </div>
-  )
+    <div className="flex justify-end"></div>
+  </div>
+  );
+  
 }
