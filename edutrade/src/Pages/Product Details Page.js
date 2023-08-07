@@ -16,11 +16,10 @@ export default function Product_Details_Page() {
 
     useEffect(()=> {
         let id = params.get('listingID');
-        console.log(params.get('listingID'));
+        
         async function getListing() {
             try{
-                let productRef = await firestoreGetDoc(firestoreDoc(firestore, "product_listings", id));
-                console.log(productRef.data());      
+                let productRef = await firestoreGetDoc(firestoreDoc(firestore, "product_listings", id));      
                 dispatch(setSelected(productRef.data()));
 
             } catch(e){

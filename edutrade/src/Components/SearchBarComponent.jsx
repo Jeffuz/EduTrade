@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { set } from "../Redux/Actions/Actions";
 
@@ -21,11 +21,18 @@ const SearchBarComponent = () => {
   const [search, setSearch] = useState(null);
   const [location, setLocation] = useState(null);
 
-  const handleClick = async() => {
-    if(search === null)
+  useEffect(() => {
+    if(searchParams.get('params') === null)
+      return;
+    if(searchParams.get('location') === null)
       return;
 
-    let lowerCase = search.toLowerCase();
+    dispatch(set(searchParams.get('params').toLowerCase(), searchParams.get('location')));
+  }, [])
+  const handleClick = async() => {
+    let lowerCase = null;
+    if(search !== null)
+      lowerCase = search.toLowerCase();
 
     dispatch(clearProductList());
     dispatch(set(lowerCase, location));
@@ -36,7 +43,7 @@ const SearchBarComponent = () => {
   function onPlaceSelect(value) {
     if(value === null)
       return;
-    console.log(value.properties.city);
+      
     setLocation(value.properties.city)
   }
 

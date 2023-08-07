@@ -8,7 +8,7 @@ import { addItem, clearProductList } from "../Redux/Actions/Actions";
 
 import { useLocation } from 'react-router-dom';
 
-import { firestore, firestoreCollection, firestoreGetDocs, firestoreQuery, firestoreWhere } from '../Firebase';
+import { firestore, firestoreCollection, firestoreGetDoc, firestoreGetDocs, firestoreQuery, firestoreWhere } from '../Firebase';
 import { sendSignInLinkToEmail } from "firebase/auth";
 
 export default function Product_Listings_Page() {
@@ -19,25 +19,45 @@ export default function Product_Listings_Page() {
     const searchParams = new URLSearchParams(location.search);
 
     useEffect(() => {
-        console.log(searchParams.get('params'));
-
         dispatch(clearProductList());
-        //getData();
+
         checkQuery();
     }, []);
 
     async function checkQuery() {
+        console.log(searchParams.get('params'));
+
+        if(searchParams.get('params') === "null" && searchParams.get('location') !== "null") {
+            // Perform all search
+            alert("No Query, searching all");
+            defaultQueryAtLocation();
+            return;
+        }
+
+        if(searchParams.get('params') !== "null" && searchParams.get('location') === "null"){
+            alert("No Location, Searching query all");
+            defaultQueryAllLocations();
+            return;
+        }
+        if(searchParams.get('params') === "null" && searchParams.get('location') === "null"){
+            alert("No Search or Locaction, Searching All");
+            searchAllQuery();
+            return;
+        }
+
         let paramList = searchParams.get('params').split(" ");
+
         let location = searchParams.get('location');
 
         const productRef = firestoreCollection(firestore, "product_listings");
         const q = firestoreQuery(productRef, firestoreWhere("tags", "array-contains-any", paramList), firestoreWhere("location", "==", location));
 
         const querySnapShot = await firestoreGetDocs(q);
+
         querySnapShot.forEach((doc) => {
             
             let data = doc.data();
-            console.log(doc.id);
+
             // if(data.uid == user.uid)
             //     return;
 
@@ -54,7 +74,82 @@ export default function Product_Listings_Page() {
             dispatch(addItem(object));
         })
     }
+    async function defaultQueryAtLocation() {
+        
+        let location = searchParams.get('location');
 
+        const productRef = firestoreCollection(firestore, "product_listings");
+        const q = firestoreQuery(productRef, firestoreWhere("location", "==", location));
+        const querySnapShot = await firestoreGetDocs(q);
+
+        querySnapShot.forEach((doc) => {
+            let data = doc.data();
+
+            // if(data.uid == user.uid)
+            //     return;
+
+            let object = {
+                images: data.images,
+                name: data.name,
+                price: data.price,
+                uid: data.uid,
+                location: data.location,
+                description: data.description,
+                documentID: doc.id
+            }
+
+            dispatch(addItem(object));
+        })
+    }
+    async function defaultQueryAllLocations() {
+        let searchList = searchParams.get('params').split(" ");
+
+        const productRef = firestoreCollection(firestore, "product_listings");
+        const q = firestoreQuery(productRef, firestoreWhere("tags", "array-contains-any", searchList));
+        const querySnapShot = await firestoreGetDocs(q);
+
+        
+        querySnapShot.forEach((doc) => {
+            let data = doc.data();
+
+            // if(data.uid == user.uid)
+            //     return;
+
+            let object = {
+                images: data.images,
+                name: data.name,
+                price: data.price,
+                uid: data.uid,
+                location: data.location,
+                description: data.description,
+                documentID: doc.id
+            }
+
+            dispatch(addItem(object));
+        })
+    }
+    async function searchAllQuery() {
+        const snap = await firestoreGetDocs(firestoreCollection(firestore, "product_listings"));
+        
+        snap.forEach((doc) => {
+            let data = doc.data();
+
+            // if(data.uid == user.uid)
+            //     return;
+
+            let object = {
+                images: data.images,
+                name: data.name,
+                price: data.price,
+                uid: data.uid,
+                location: data.location,
+                description: data.description,
+                documentID: doc.id
+            }
+
+            dispatch(addItem(object));
+        })
+    }
     return (
         <div className="bg-[#E9F7CA] text-center">
             <div>
