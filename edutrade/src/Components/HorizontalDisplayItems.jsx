@@ -56,8 +56,8 @@ export default function HorizontalDisplayItems() {
     const container = document.querySelector('.flex.overflow-x-auto');
     if (container) {
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
-      const scrollIncrement = 5; // Adjust the scroll increment as needed
-      const scrollIntervalTime = 10; // Adjust the interval time (in milliseconds) as needed
+      const scrollIncrement = 5; 
+      const scrollIntervalTime = 12; 
   
       let currentScrollLeft = container.scrollLeft;
       const scrollInterval = setInterval(() => {
