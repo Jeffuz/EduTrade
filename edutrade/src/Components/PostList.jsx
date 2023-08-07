@@ -13,6 +13,9 @@ function PostList() {
         postData.push({ id: doc.id, ...doc.data() });
       });
 
+      // Sort posts from newest to oldest
+      postData.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds);
+
       setPosts(postData);
     }
 
@@ -26,6 +29,11 @@ function PostList() {
           <li key={post.id} className="rounded">
             <Link to={`/post/${post.id}`} className="block p-4 border-2 border-pink-200 hover:border-pink-500 rounded-md">
               <div className="cursor-pointer">
+                {/* Display user name and profile photo */}
+                <div className="flex items-center mb-2">
+                  <img src={post.user.photoURL} alt={post.user.name} className="w-6 h-6 rounded-full mr-2" />
+                  <p className="text-gray-700 font-medium">{post.user.name}</p>
+                </div>
                 <h2 className="text-xl font-bold mb-2">{post.title}</h2>
                 {post.content && <p>{post.content}</p>}
                 {post.image && <img src={post.image} alt="Post Image" className="max-h-40 mb-2" />}

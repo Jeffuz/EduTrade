@@ -9,6 +9,7 @@ import {
   firestoreUploadBytes, // Import uploadBytes
   firestoreGetDownloadURL, // Import getDownloadURL
 } from '../Firebase';
+import { UserAuth } from "../Context/AuthContext"; // Get user name and email
 
 export default function Post({ isOpen, onClose }) {
   const [postTitle, setPostTitle] = useState("");
@@ -16,19 +17,25 @@ export default function Post({ isOpen, onClose }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [postOption, setPostOption] = useState("text");
   const [linkUrl, setLinkUrl] = useState("");
+  const { user } = UserAuth();
 
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
     setSelectedImage(imageFile);
   };
-  
+
   const handlePostSubmit = async () => {
     if (postTitle.trim() !== "") {
       try {
         const postRef = firestoreCollection(firestore, "posts");
+        const userData = {
+          name: user.displayName,
+          photoURL: user.photoURL,
+        };
         const postData = {
           title: postTitle,
           timestamp: firestoreServerTimestamp(),
+          user: userData,
         };
 
         if (postOption === "text") {
@@ -51,7 +58,7 @@ export default function Post({ isOpen, onClose }) {
         setSelectedImage(null);
         setPostOption("text");
         setLinkUrl("");
-        
+
         window.location.reload(); // Refresh the page
       } catch (error) {
         console.error("Error adding post:", error);
@@ -71,31 +78,27 @@ export default function Post({ isOpen, onClose }) {
         />
         <div className="flex space-x-4 mb-2">
           <button
-            className={`px-4 py-2 rounded font-bold ${
-              postOption === "text" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
-            } focus:text-pink-500 focus:border-pink-500`}
+            className={`px-4 py-2 rounded font-bold ${postOption === "text" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
+              } focus:text-pink-500 focus:border-pink-500`}
             onClick={() => setPostOption("text")}
           >
             Text
           </button>
           <button
-            className={`px-4 py-2 rounded font-bold ${
-              postOption === "image" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
-            } focus:text-pink-500 focus:border-pink-500`}
+            className={`px-4 py-2 rounded font-bold ${postOption === "image" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
+              } focus:text-pink-500 focus:border-pink-500`}
             onClick={() => setPostOption("image")}
           >
             Image
           </button>
           <button
-            className={`px-4 py-2 rounded font-bold ${
-              postOption === "link" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
-            } focus:text-pink-500 focus:border-pink-500`}
+            className={`px-4 py-2 rounded font-bold ${postOption === "link" ? "text-pink-500 border-b-2 border-pink-500" : "text-gray-700"
+              } focus:text-pink-500 focus:border-pink-500`}
             onClick={() => setPostOption("link")}
           >
             Link
           </button>
         </div>
-
 
         {postOption === "text" && (
           <textarea
