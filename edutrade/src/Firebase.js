@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, addDoc, serverTimestamp, getDocs, getDoc, query, where, doc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, serverTimestamp, getDocs, getDoc, query, where, doc, limit, orderBy } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -28,5 +28,7 @@ export const firestoreGetDoc = getDoc;
 export const firestoreRef = ref; // Export ref
 export const firestoreUploadBytes = uploadBytes; // Export uploadBytes
 export const firestoreGetDownloadURL = getDownloadURL; // Export getDownloadURL
+export const firestoreLimit = limit;
+export const firestoreOrderBy = orderBy;
 
 export default app;
