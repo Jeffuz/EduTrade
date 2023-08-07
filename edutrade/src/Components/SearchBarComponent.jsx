@@ -51,7 +51,12 @@ const SearchBarComponent = () => {
   return (
     <div class='flex py-4 justify-start flex-wrap mt-12'>
       <input 
-        className='w-1/3 pl-2 mr-5 rounded-md'
+        className='w-1/3 h-[36px] 
+        pt-0 mr-5 rounded-md
+        pl-[7px] pr-[31px] pb-0 text-[14px]
+        border-solid border-1 border-black border-opacity-[0.2] 
+        focus:outline-0'
+        
         type="text" onChange={(e) => setSearch(e.target.value)}
         placeholder="What you are looking for"
       />
