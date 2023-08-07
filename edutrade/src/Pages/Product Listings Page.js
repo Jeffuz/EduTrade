@@ -26,7 +26,11 @@ export default function Product_Listings_Page() {
 
     async function checkQuery() {
         console.log(searchParams.get('params'));
-
+        if(searchParams.get('params') === null || searchParams.get('location') === null) {
+            searchAllQuery();
+            return;
+        }
+             
         if(searchParams.get('params') === "null" && searchParams.get('location') !== "null") {
             // Perform all search
             defaultQueryAtLocation();
