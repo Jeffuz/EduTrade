@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { firestore, firestoreCollection, firestoreDoc, firestoreGetDoc } from "../Firebase"; // Adjust the import path as needed
+import { firestore, firestoreDoc, firestoreGetDoc } from "../Firebase"; // Adjust the import path as needed
 import { useParams, Link } from "react-router-dom";
 import Reply from "../Components/Reply"; // Import the Reply component
 import ReplyList from "../Components/ReplyList"; // Import the ReplyList component

@@ -28,6 +28,7 @@ export default function Reply({ postId }) {
 
       // Clear the comment input
       setComment("");
+      window.location.reload(); // Refresh the page
     } catch (error) {
       console.error("Error submitting comment:", error);
     }
