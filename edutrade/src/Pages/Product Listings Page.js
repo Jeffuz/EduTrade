@@ -29,18 +29,15 @@ export default function Product_Listings_Page() {
 
         if(searchParams.get('params') === "null" && searchParams.get('location') !== "null") {
             // Perform all search
-            alert("No Query, searching all");
             defaultQueryAtLocation();
             return;
         }
 
         if(searchParams.get('params') !== "null" && searchParams.get('location') === "null"){
-            alert("No Location, Searching query all");
             defaultQueryAllLocations();
             return;
         }
         if(searchParams.get('params') === "null" && searchParams.get('location') === "null"){
-            alert("No Search or Locaction, Searching All");
             searchAllQuery();
             return;
         }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageUploader from "./ImageUploader";
 import { useSelector } from "react-redux";
 import { UserAuth } from "../Context/AuthContext";
@@ -19,12 +19,21 @@ const CreateItemPost = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    
+    if(!user?.email)
+      navigate("/login");
+    else
+      console.log("Already logged in");
+  }, []);
+
+
   const handleSubmitCreateListing = async (e) => {  
     if (name === null || price === null || desc === null || location === null) {
       alert("Please fill out all forms");
       return;
     }
-      
+    const checkPriceString = /^[0-9]*$/;
 
 
     // Try Uploading listing to the database
@@ -33,7 +42,11 @@ const CreateItemPost = () => {
       var lowerCase = name.toLowerCase();
 
       let tags = lowerCase.split(" ");
-
+      if(!price.match(checkPriceString))
+        {
+          alert("Price is not num");
+          return;
+        }
       await firestoreAddDoc(listingRef, {
         uid: user.uid,
         name: lowerCase,

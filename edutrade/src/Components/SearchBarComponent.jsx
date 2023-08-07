@@ -31,6 +31,7 @@ const SearchBarComponent = () => {
   }, [])
   const handleClick = async() => {
     let lowerCase = null;
+    
     if(search !== null)
       lowerCase = search.toLowerCase();
 
@@ -43,7 +44,7 @@ const SearchBarComponent = () => {
   function onPlaceSelect(value) {
     if(value === null)
       return;
-      
+
     setLocation(value.properties.city)
   }
 
