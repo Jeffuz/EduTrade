@@ -22,7 +22,7 @@ const ImageDisplay = ({imageList}) => {
       : null}
 
 
-      <img className="h-[50%] w-[50%] aspect-square object-cover" src={imageList[index]}/>
+      <img className=" h-full w-full aspect-square object-cover" src={imageList[index]}/>
       
       {imageList.length > 0? 
         <button className="bg-red-50 p-5 opacity-30 hover:opacity-90 

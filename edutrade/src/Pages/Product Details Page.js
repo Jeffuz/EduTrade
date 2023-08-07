@@ -61,27 +61,40 @@ export default function Product_Details_Page() {
     }
 
     return (
-        <div className="ml-[20%] mr-[20%]">
-            <button className="bg-red-50 p-10" onClick={goBack}>Back</button>
+        <div className="ml-[5%] mr-[5%] m-10">
+            <div className="flex justify-between">
+
+            </div>
+
             {selectedItem != null? 
-            <div className="text-left m-auto">
-
-                <ImageDisplay imageList={selectedItem.images}/>
-                <div className="flex flex-wrap justify-center">
-                    <h3 className="text-3xl mr-5">${selectedItem.price}</h3>
-                    <h3 className="text-3xl text-ellipsis">{selectedItem.name}</h3>                    
+            <div className="flex">
+                <div className="">
+                    <button className="bg-red-50 p-10" onClick={goBack}>Back</button>
+                </div>
+                <div className="flex-[2_1_0%]">
+                    <ImageDisplay imageList={selectedItem.images}/>
                 </div>
 
+                <div className="flex-1 bg-slate-50 rounded-md">
+                    
+
+                    <h3 className="text-4xl text-ellipsis p-10 pb-1 font-bold">{selectedItem.name}</h3>                    
+                    <h3 className="text-3xl mr-5 p-10 pt-2 pb-1">${selectedItem.price}</h3>
+                    <p className="text-lg pl-10 text-slate-600">{selectedItem.location}</p>
+                    
+                    <div className="m-5 max-h-[10vh] min-h-[25vh]">
+                        <p className="text-2xl">{selectedItem.description}</p>
+                    </div>
+
+                    <div className="bottom-0 flex justify-center">
+                        <button className="bg-red-50 text-2xl font-bold pl-5 pr-5 pt-2 pb-2 rounded-xl" onClick={handleClick}>Message</button>                
+                    </div>
+                </div>
                 
-                <p className="text-lg text-center text-slate-600">{selectedItem.location}</p>
-                <div className="m-5">
-                    <p className="text-2xl">{selectedItem.description}</p>
-                </div>
-
             </div>
             : null}
 
-            <button className="bg-red-50 p-10" onClick={handleClick}>Message</button>
+            
         </div>
     )
 }
