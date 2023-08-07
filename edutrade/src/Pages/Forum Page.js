@@ -3,13 +3,22 @@ import Post from '../Components/Post';
 import PostList from '../Components/PostList';
 import SideBar from '../Components/SideBar';
 import ThreadPage from './Thread Page';
+import { UserAuth } from '../Context/AuthContext';
 
 export default function Forum_Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = UserAuth()
 
   const openModal = () => {
-    setIsModalOpen(true);
+    // Check if the user is logged in before opening the modal
+    if (user?.email) {
+      setIsModalOpen(true);
+    } else {
+      // Display a pop-up or message to inform the user to login
+      alert("Please login to create a post.");
+    }
   };
+
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -24,7 +33,7 @@ export default function Forum_Page() {
         </div>
         <div className="w-1/5 flex flex-col pl-10">
           <button
-            className="bg-pink-500 py-3 mr-4 ml-16 text-gray-200 items-center font-bold rounded focus:bg-pink-300"
+            className="bg-pink-500 py-3 mr-4 ml-16 text-gray-200 items-center font-bold rounded hover:bg-pink-300"
             onClick={openModal}>
             post
           </button>
