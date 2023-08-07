@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import ImageUploader from "./ImageUploader";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { UserAuth } from "../Context/AuthContext";
 import { firestore, firestoreAddDoc, firestoreCollection, firestoreServerTimestamp} from '../Firebase';
 import { useNavigate  } from "react-router-dom";
+import { clearImages } from "../Redux/Actions/Actions";
 
 import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 import '@geoapify/geocoder-autocomplete/styles/round-borders.css'
+
 const CreateItemPost = () => {
+  const dispatch = useDispatch();
+
   const { user } = UserAuth();
   const imageList = useSelector(state => state.ImageList);
 
@@ -25,7 +29,9 @@ const CreateItemPost = () => {
       navigate("/login");
     else
       console.log("Already logged in");
-  }, []);
+
+    dispatch(clearImages());
+  }, [user]);
 
 
   const handleSubmitCreateListing = async (e) => {  
@@ -33,7 +39,7 @@ const CreateItemPost = () => {
       alert("Please fill out all forms");
       return;
     }
-    const checkPriceString = /^[0-9]*$/;
+    const checkPriceString = /^[0-9]*[.]?^[0-9]*$/;
 
 
     // Try Uploading listing to the database
@@ -47,6 +53,8 @@ const CreateItemPost = () => {
           alert("Price is not num");  
           return;
         }
+      console.log("Uploading");
+
       await firestoreAddDoc(listingRef, {
         uid: user.uid,
         name: lowerCase,
