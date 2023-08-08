@@ -22,7 +22,8 @@ export default function Reply({ postId }) {
       // Store the comment to Firestore and link it to the current post
       await firestoreAddDoc(firestoreCollection(firestore, `posts/${postId}/comments`), {
         text: comment,
-        userId: user.uid,
+        username: user.displayName, // Use the user's display name as username
+        photoURL: user.photoURL, // Use the user's photoURL as photoURL
         timestamp: firestoreServerTimestamp(),
       });
 
@@ -45,7 +46,7 @@ export default function Reply({ postId }) {
       />
       <button
         onClick={handleCommentSubmit}
-        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded float-right"
+        className="mt-2 bg-stone-500 focus:bg-stone-300 text-white px-4 py-2 mb-2 rounded float-right"
       >
         Comment
       </button>
