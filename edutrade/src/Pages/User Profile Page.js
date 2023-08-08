@@ -2,7 +2,7 @@ import React from "react";
 import { UserAuth } from "../Context/AuthContext";
 import UsernameUpdate from "../Components/UsernameUpdate";
 import ProfilePictureUpdate from "../Components/ProfilePictureUpdate";
-
+import CreateItemButton from "../Components/CreateItemButton";
 export default function User_Profile_Page() {
     const { user } = UserAuth();
 
@@ -14,6 +14,7 @@ export default function User_Profile_Page() {
                 <p>Email: {user?.email}</p>
                 <UsernameUpdate />
             </div>
+            {!user?.email? (null): <CreateItemButton/>}
         </div>
     );
 }

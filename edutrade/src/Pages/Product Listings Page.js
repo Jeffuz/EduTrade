@@ -154,7 +154,7 @@ export default function Product_Listings_Page() {
     return (
         <div className="bg-[#E9F7CA] text-center">
             <div>
-                <CreateItemButton/>
+                {!user?.email? (null): <CreateItemButton/>}
             </div>
             <div className="flex">
                 <div className="flex-1">

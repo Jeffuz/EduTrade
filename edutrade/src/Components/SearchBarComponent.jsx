@@ -22,17 +22,17 @@ const SearchBarComponent = () => {
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
-    if(searchParams.get('params') === null)
+    if (searchParams.get('params') === null)
       return;
-    if(searchParams.get('location') === null)
+    if (searchParams.get('location') === null)
       return;
 
     dispatch(set(searchParams.get('params').toLowerCase(), searchParams.get('location')));
   }, [])
-  const handleClick = async() => {
+  const handleClick = async () => {
     let lowerCase = null;
-    
-    if(search !== null)
+
+    if (search !== null)
       lowerCase = search.toLowerCase();
 
     dispatch(clearProductList());
@@ -42,29 +42,40 @@ const SearchBarComponent = () => {
     navigate(0);
   }
   function onPlaceSelect(value) {
-    if(value === null)
+    if (value === null)
       return;
 
     setLocation(value.properties.city)
   }
 
-  return(
-    <div class='flex p-10 justify-start flex-wrap'>
-        <input class='pt-2 pb-2 pr-20 mr-5 rounded-lg' type="text" onChange={(e) => setSearch(e.target.value)} placeholder="What you are looking for" />
-        {/* Auto Complete City names when searching */}
-        {/* <input class='pt-2 pb-2 pr-10 rounded-lg' type="text" onChange={(e) => setLocation(e.target.value)} placeholder="Location"/> */}
-        <div className="w-[25%] min-w-[300px]">
-          <GeoapifyContext  apiKey="cd43814d5f9e463a87a3b89b2c00db26">
-            <GeoapifyGeocoderAutocomplete
-              value={searchParams.get('location')}
-              placeSelect={onPlaceSelect}
-            />
-          </GeoapifyContext >          
-        </div>
-
-
-        <button class='rounded-3xl p-2  ml-5 pl-5 pr-5 bg-[#F7D488] transition transition-duration-50 hover:brightness-75 active:brightness-50' onClick={handleClick}>Search</button>
-    </div>    
+  return (
+    <div class='flex py-4 justify-start flex-wrap mt-12'>
+      <input 
+        className='w-1/3 h-[36px] 
+        pt-0 mr-5 rounded-md
+        pl-[7px] pr-[31px] pb-0 text-[14px]
+        border-solid border-1 border-black border-opacity-[0.2] 
+        focus:outline-0'
+        
+        type="text" onChange={(e) => setSearch(e.target.value)}
+        placeholder="What you are looking for"
+      />
+      {/* Auto Complete City names when searching */}
+      {/* <input class='pt-2 pb-2 pr-10 rounded-lg' type="text" onChange={(e) => setLocation(e.target.value)} placeholder="Location"/> */}
+      <div className="w-1/3">
+        <GeoapifyContext apiKey="cd43814d5f9e463a87a3b89b2c00db26">
+          <GeoapifyGeocoderAutocomplete
+            value={searchParams.get('location')}
+            placeSelect={onPlaceSelect}
+          />
+        </GeoapifyContext >
+      </div>
+      <button
+        className='rounded-md w-1/12 py-2 bg-orange-400 hover:bg-orange-300 duration-300 ease-in-out shadow-lg font-semibold text-gray-900'
+        onClick={handleClick}>
+        Search
+      </button>
+    </div>
   )
 
 }
