@@ -57,7 +57,6 @@ export default function Product_Details_Page() {
                     users: [currentUser.uid, seller.uid],
                     createdAt: firestoreServerTimestamp(),
                     username: seller.displayName,
-                    pfp:seller.photoURL,
                 });
                 navigate(`/message/${chatRoomId}`);
             }
