@@ -21,14 +21,15 @@ export default function UsernameUpdate() {
     };
 
     return (
-        <div>
+        <div className="flex flex-col items-center mt-1">
             <input
                 type="text"
                 value={newUsername}
                 onChange={handleUsernameChange}
                 placeholder="Enter new username"
+                className="bg-blue-50 mb-2 px-4 py-2 rounded-md"
             />
-            <button onClick={handleUsernameUpdate}>Update Username</button>
+            <button className='bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700' onClick={handleUsernameUpdate}>Update Username</button>
         </div>
     );
 }

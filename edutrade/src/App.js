@@ -24,7 +24,7 @@ import Messages from './Pages/Messages';
 
 function App() {
   return (
-    <div>
+    <div className='bg-blue-200'>
       <AuthContextProvider>
         <NavBar />
         <Routes>

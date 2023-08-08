@@ -7,14 +7,14 @@ export default function User_Profile_Page() {
     const { user } = UserAuth();
 
     return (
-        <div className="flex justify-center items-center p-[18%]">
+        <div className="flex justify-center items-center p-[15.09%] text-blue-800">
             <ProfilePictureUpdate />
             <div className="p-4">
                 <p className="font-bold text-4xl ">{user?.displayName}</p>
                 <p>Email: {user?.email}</p>
                 <UsernameUpdate />
             </div>
-            {!user?.email? (null): <CreateItemButton/>}
+            {/* {!user?.email? (null): <CreateItemButton/>} */}
         </div>
     );
 }

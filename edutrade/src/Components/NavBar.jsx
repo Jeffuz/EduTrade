@@ -13,7 +13,7 @@ const NavBar = () => {
         }
     }
     return (
-        <div className='flex justify-between items-center h-24 max-w-[1500px] mx-auto px-4'>
+        <div className='flex text-blue-800 bg-blue-200 justify-between items-center h-24 max-w-[1500px] mx-auto px-4'>
             <Link to='/' className='font-bold text-3xl'>EduTrade</Link>
             <div>
                 {user?.email ? (
