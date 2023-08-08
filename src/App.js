@@ -30,6 +30,7 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/" element={< HomePage />} />
+          <Route path="/EduTrade" element={< HomePage />} />
           <Route path="/aboutus" element={< AboutUsPage />} />
           <Route path="/contactus" element={< ContactUsPage />} />
           <Route path="/forum" element={< ForumPage />} />
