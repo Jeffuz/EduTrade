@@ -50,13 +50,13 @@ const SearchBarComponent = () => {
 
   return (
     <div class='flex py-4 justify-start flex-wrap mt-12'>
-      <input 
+      <input
         className='w-1/3 h-[36px] 
         pt-0 mr-5 rounded-md
         pl-[7px] pr-[31px] pb-0 text-[14px]
         border-solid border-1 border-black border-opacity-[0.2] 
-        focus:outline-0'
-        
+        focus:outline-0 bg-blue-50'
+
         type="text" onChange={(e) => setSearch(e.target.value)}
         placeholder="What you are looking for"
       />
@@ -67,11 +67,12 @@ const SearchBarComponent = () => {
           <GeoapifyGeocoderAutocomplete
             value={searchParams.get('location')}
             placeSelect={onPlaceSelect}
+            className='bg-blue-50'
           />
         </GeoapifyContext >
       </div>
       <button
-        className='rounded-md w-1/12 py-2 bg-stone-300 hover:bg-stone-400 duration-300 ease-in-out shadow-lg font-semibold text-gray-900'
+        className='rounded-md w-1/12 py-2 bg-indigo-600 hover:bg-indigo-700 duration-300 ease-in-out shadow-lg font-semibold text-white'
         onClick={handleClick}>
         Search
       </button>

@@ -26,22 +26,22 @@ export default function Product_Listings_Page() {
 
     async function checkQuery() {
         console.log(searchParams.get('params'));
-        if(searchParams.get('params') === null || searchParams.get('location') === null) {
+        if (searchParams.get('params') === null || searchParams.get('location') === null) {
             searchAllQuery();
             return;
         }
-             
-        if(searchParams.get('params') === "null" && searchParams.get('location') !== "null") {
+
+        if (searchParams.get('params') === "null" && searchParams.get('location') !== "null") {
             // Perform all search
             defaultQueryAtLocation();
             return;
         }
 
-        if(searchParams.get('params') !== "null" && searchParams.get('location') === "null"){
+        if (searchParams.get('params') !== "null" && searchParams.get('location') === "null") {
             defaultQueryAllLocations();
             return;
         }
-        if(searchParams.get('params') === "null" && searchParams.get('location') === "null"){
+        if (searchParams.get('params') === "null" && searchParams.get('location') === "null") {
             searchAllQuery();
             return;
         }
@@ -56,7 +56,7 @@ export default function Product_Listings_Page() {
         const querySnapShot = await firestoreGetDocs(q);
 
         querySnapShot.forEach((doc) => {
-            
+
             let data = doc.data();
 
             // if(data.uid == user.uid)
@@ -76,7 +76,7 @@ export default function Product_Listings_Page() {
         })
     }
     async function defaultQueryAtLocation() {
-        
+
         let location = searchParams.get('location');
 
         const productRef = firestoreCollection(firestore, "product_listings");
@@ -109,7 +109,7 @@ export default function Product_Listings_Page() {
         const q = firestoreQuery(productRef, firestoreWhere("tags", "array-contains-any", searchList));
         const querySnapShot = await firestoreGetDocs(q);
 
-        
+
         querySnapShot.forEach((doc) => {
             let data = doc.data();
 
@@ -131,7 +131,7 @@ export default function Product_Listings_Page() {
     }
     async function searchAllQuery() {
         const snap = await firestoreGetDocs(firestoreCollection(firestore, "product_listings"));
-        
+
         snap.forEach((doc) => {
             let data = doc.data();
 
@@ -152,30 +152,30 @@ export default function Product_Listings_Page() {
         })
     }
     return (
-        <div className="bg-[#E9F7CA] text-center">
+        <div className="bg-blue-100 text-center">
             <div>
-                {!user?.email? (null): <CreateItemButton/>}
+                {!user?.email ? (null) : <CreateItemButton />}
             </div>
-            <div className="flex">
-                <div className="flex-1">
-                    <SearchBarComponent/>
+            <div className="flex justify-center">
+                <div className=" ml-[5.4%] flex-1">
+                    <SearchBarComponent />
                 </div>
-                {/* <p className="m-auto flex-1">FILTERS</p> */}
+
             </div>
-            
+
             {/* Display */}
-            <div className=" flex flex-wrap bg-[#eeee] ml-[5vw] mr-[5vw] min-h-screen h-fit">
+            <div className=" flex flex-wrap bg-blue-100 ml-[5vw] mr-[5vw] min-h-screen h-fit">
                 {productList.map((item, index) => {
-                    return(
+                    return (
                         <div key={index}>
                             <ItemDisplay image={item.images[0]}
-                                    title={item.name}
-                                    location={item.location}
-                                    price={item.price}
-                                    docID={item.documentID}
-                            />  
+                                title={item.name}
+                                location={item.location}
+                                price={item.price}
+                                docID={item.documentID}
+                            />
                         </div>
-                      
+
                     )
                 })}
             </div>

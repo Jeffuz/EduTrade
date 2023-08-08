@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { firestore, firestoreGetDoc, firestoreDoc, firestoreCollection, firestoreAddDoc, firestoreServerTimestamp, firestoreQuery, firestoreWhere, firestoreGetDocs } from '../Firebase';
 import { setSelected } from "../Redux/Actions/Actions";
+import { TfiBackLeft } from "react-icons/tfi"
 
 
 import ImageDisplay from "../Components/ImageDisplay";
@@ -72,38 +73,39 @@ export default function Product_Details_Page() {
     return (
         <div className="ml-[5%] mr-[5%] m-10">
             <div className="flex justify-between">
-
+                {/* ... (if needed) */}
             </div>
 
-            {selectedItem != null? 
-            <div className="flex">
-                <div className="">
-                    <button className="bg-red-50 p-10" onClick={goBack}>Back</button>
-                </div>
-                <div className="flex-[2_1_0%]">
-                    <ImageDisplay imageList={selectedItem.images}/>
-                </div>
-
-                <div className="flex-1 bg-slate-50 rounded-md">
-                    
-
-                    <h3 className="text-4xl text-ellipsis p-10 pb-1 font-bold">{selectedItem.name}</h3>                    
-                    <h3 className="text-3xl mr-5 p-10 pt-2 pb-1">${selectedItem.price}</h3>
-                    <p className="text-lg pl-10 text-slate-600">{selectedItem.location}</p>
-                    
-                    <div className="m-5 max-h-[10vh] min-h-[25vh]">
-                        <p className="text-2xl">{selectedItem.description}</p>
+            {selectedItem != null ? (
+                <div className="flex flex-col md:flex-row md:space-x-6">
+                    <div>
+                        <button
+                            className="bg-indigo-600 hover:bg-indigo-700 text-lg text-white font-bold ml-4 px-6 py-2 rounded-xl mt-2 md:mt-0"
+                            onClick={goBack}
+                        >
+                            <TfiBackLeft size={30} />
+                        </button>
+                    </div>
+                    <div className="md:w-1/2">
+                        <ImageDisplay imageList={selectedItem.images} />
                     </div>
 
-                    <div className="bottom-0 flex justify-center">
-                        <button className="bg-red-50 text-2xl font-bold pl-5 pr-5 pt-2 pb-2 rounded-xl" onClick={handleClick}>Message</button>                
+                    <div className="md:w-1/2 mt-6 md:mt-0">
+                        <h1 className="text-3xl font-semibold mb-4">{selectedItem.name}</h1>
+                        <p className="text-lg text-gray-600 mb-4">${selectedItem.price}</p>
+                        <p className="text-md text-gray-600 mb-6">{selectedItem.location}</p>
+                        <div className="mb-6">
+                            <p className="text-xl">{selectedItem.description}</p>
+                        </div>
+                        <button
+                            className="bg-indigo-600 hover:bg-indigo-700 text-lg text-white font-semibold px-6 py-2 rounded-xl"
+                            onClick={handleClick}
+                        >
+                            Send a Message 💬
+                        </button>
                     </div>
                 </div>
-                
-            </div>
-            : null}
-
-            
+            ) : null}
         </div>
-    )
+    );
 }

@@ -32,13 +32,13 @@ export default function ThreadPage() {
     <div className="min-h-screen h-fit">
       <div className='flex justify-between max-w-[1500px] mx-auto pt-10'>
         <div className="px-4 w-1/5 flex flex-col">
-          <Link to="/forum" className="bg-stone-500 mr-20 py-2 px-4 text-white font-bold rounded focus:bg-stone-300">
+          <Link to="/forum" className="bg-indigo-600 mr-20 py-2 px-4 text-white font-bold rounded hover:bg-indigo-700">
             Go Back
           </Link>
         </div>
 
         <div className="w-3/5 h-screen overflow-y-auto">
-          <div className="bg-stone rounded shadow-md px-4 border-2 border-stone-500 overflow-y-auto">
+          <div className="bg-white rounded shadow-md px-4 border-2 border-blue-300 overflow-y-auto">
             <div className="flex items-center my-2">
               <img src={post.user.photoURL} alt={post.user.name} className="w-6 h-6 rounded-full mr-2" />
               <p className="text-gray-700 font-medium">{post.user.name}</p>
@@ -58,13 +58,13 @@ export default function ThreadPage() {
             )}
 
             {/* Include the Reply component to allow users to comment */}
-            <Reply postId={postId} />
-            
+            <div className="pb-3"><Reply postId={postId} /></div>
+
             {/* Include the ReplyList component to display comments */}
             <ReplyList postId={postId} />
           </div>
         </div>
-        
+
         <div className="w-1/5 flex flex-col pl-10"></div>
       </div>
     </div>
