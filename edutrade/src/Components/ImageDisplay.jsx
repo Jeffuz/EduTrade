@@ -1,36 +1,47 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 
-const ImageDisplay = ({imageList}) => {
+
+const ImageDisplay = ({ imageList }) => {
   const [index, setIndex] = useState(0);
   const setImageIndex = (changeValue) => {
-    if(index === 0 && changeValue === -1)
+    if (index === 0 && changeValue === -1)
       return;
 
-    if (index === imageList.length-1 && changeValue === 1)
+    if (index === imageList.length - 1 && changeValue === 1)
       return;
     console.log(index);
     setIndex(index + changeValue);
-    
+
   }
 
   return (
-    <div className="flex justify-center">
-      {imageList.length > 0? 
-        <button class="relative left-[4rem] bg-red-50 p-5 opacity-30 hover:opacity-100 
-        transition-all duration-100" 
-        onClick={(e) => setImageIndex(-1)}>Back</button> 
-      : null}
+    <div className="flex items-center justify-center">
+      {imageList.length > 0 && index > 0 && (
+        <button
+          className="bg-green-100 rounded-full p-2 hover:bg-green-50 transition-all duration-100 transform translate-x-[-1rem]"
+          onClick={() => setImageIndex(-1)}
+        >
+          <AiOutlineArrowLeft />
+        </button>
+      )}
 
+      <img
+        className="h-[90%] w-[90%] aspect-square object-cover"
+        src={imageList[index]}
+        alt={`Image ${index + 1}`}
+      />
 
-      <img className=" h-[90%] w-[90%] aspect-square object-cover" src={imageList[index]}/>
-      
-      {imageList.length > 0? 
-        <button className="relative right-[4rem] bg-red-50 p-5 opacity-30 hover:opacity-90 
-        transition-all duration-100" 
-        onClick={(e) => setImageIndex(1)}>Next</button>    
-      : null }      
+      {imageList.length > 0 && index < imageList.length - 1 && (
+        <button
+          className="bg-green-100 rounded-full p-2 hover:bg-green-50 transition-all duration-100 transform translate-x-[1rem]"
+          onClick={() => setImageIndex(1)}
+        >
+          <AiOutlineArrowRight />
+        </button>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default ImageDisplay;
