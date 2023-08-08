@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../Context/AuthContext';
 import { BiMessageSquareDetail } from "react-icons/bi";
+import { GiDiscussion } from "react-icons/gi"
 
 const NavBar = () => {
     const { user, logOut } = UserAuth()
@@ -18,11 +19,12 @@ const NavBar = () => {
             <div>
                 {user?.email ? (
                     <div className='flex justify-center items-center'>
-                        <Link to="/messages" className='p-4'><BiMessageSquareDetail size={25} /></Link>
-                        <Link to="/userprofile " className='p-4'>
+                        <Link to="/forum" className='p-4 hover:text-blue-600'><GiDiscussion size={25} /></Link>
+                        <Link to="/messages" className='p-4 hover:text-blue-600'><BiMessageSquareDetail size={25} /></Link>
+                        <Link to="/userprofile " className='p-4 hover:text-blue-600'>
                             <img src={user.photoURL} alt='Profile' className='w-8 h-8 rounded-full' />
                         </Link>
-                        <button onClick={handleSignOut} className='p-4'>Logout</button>
+                        <button onClick={handleSignOut} className='p-4 hover:text-blue-600'>Logout</button>
                     </div>
                 ) : (
                     <div>

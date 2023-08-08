@@ -46,7 +46,7 @@ export default function Reply({ postId }) {
       />
       <button
         onClick={handleCommentSubmit}
-        className="mt-2 bg-stone-500 focus:bg-stone-300 text-white px-4 py-2 mb-2 rounded float-right"
+        className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 mb-2 rounded float-right"
       >
         Comment
       </button>

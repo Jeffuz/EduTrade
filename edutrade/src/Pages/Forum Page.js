@@ -25,7 +25,7 @@ export default function Forum_Page() {
   };
 
   return (
-    <div className="min-h-screen h-fit bg-white">
+    <div className="min-h-screen h-fit bg-blue-100">
       <div className='flex justify-between max-w-[1500px] mx-auto px-4 pt-10'>
         <SideBar />
         <div className="w-3/5 h-screen overflow-y-auto">
@@ -33,9 +33,9 @@ export default function Forum_Page() {
         </div>
         <div className="w-1/5 flex flex-col pl-10">
           <button
-            className="bg-stone-500 py-3 mr-4 ml-16 text-gray-200 items-center font-bold rounded focus:bg-stone-300"
+            className="bg-indigo-600 hover:bg-indigo-700 py-3 mr-4 ml-16 text-white items-center font-bold rounded"
             onClick={openModal}>
-            post
+            Post
           </button>
           <Post isOpen={isModalOpen} onClose={closeModal} />
         </div>

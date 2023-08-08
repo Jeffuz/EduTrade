@@ -7,6 +7,8 @@ import ItemDisplay from "./ItemDisplay";
 import { firestore, firestoreCollection, firestoreLimit, firestoreQuery, firestoreOrderBy, firestoreGetDocs } from '../Firebase';
 import { useNavigate } from "react-router";
 
+import { CiCircleMore } from 'react-icons/ci'
+import { Link } from "react-router-dom";
 
 export default function HorizontalDisplayItems() {
   const navigate = useNavigate();
@@ -35,13 +37,13 @@ export default function HorizontalDisplayItems() {
       //     return;
 
       let object = {
-          images: data.images,
-          name: data.name,
-          price: data.price,
-          uid: data.uid,
-          location: data.location,
-          description: data.description,
-          documentID: doc.id
+        images: data.images,
+        name: data.name,
+        price: data.price,
+        uid: data.uid,
+        location: data.location,
+        description: data.description,
+        documentID: doc.id
       }
 
       dispatch(addItem(object));
@@ -58,7 +60,7 @@ export default function HorizontalDisplayItems() {
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       const scrollIncrement = 5; // Adjust the scroll increment as needed
       const scrollIntervalTime = 10; // Adjust the interval time (in milliseconds) as needed
-  
+
       let currentScrollLeft = container.scrollLeft;
       const scrollInterval = setInterval(() => {
         if (scrollDirection === 'right') {
@@ -78,7 +80,7 @@ export default function HorizontalDisplayItems() {
   };
 
   return (
-    <div className="border-none bg-stone-600/50 hover:border-gray-300/80 rounded-lg border-4 to-slate-100">
+    <div className="border-none bg-blue-100 hover:border-gray-300/80 rounded-lg border-4 to-slate-100">
       <div className="flex overflow-x-hidden z-[-1]">
         <div
           className="flex overflow-x-auto py-2"
@@ -96,14 +98,16 @@ export default function HorizontalDisplayItems() {
               />
             </div>
           ))}
-        {/* "More" button directing to another page */}
-        <a href="/other-page" className="h-full bg-stone-300 rounded flex items-center font-semibold text-gray-900">
-          More
-        </a>
+          {/* "More" button directing to another page */}
+
+          <Link to="/productlistings" className="text-blue-500 mt-[10%]">
+            <CiCircleMore size={30} />
+          </Link>
+
+        </div>
       </div>
+      <div className="flex justify-end"></div>
     </div>
-    <div className="flex justify-end"></div>
-  </div>
   );
-  
+
 }
