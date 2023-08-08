@@ -4,7 +4,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Icon } from '@iconify/react';
 import { BiImageAdd } from 'react-icons/bi';
 
-const SendMessage = ({ scroll }) => {
+const SendMessage = ({ scroll, chatRoomId }) => {
     const [input, setInput] = useState('');
     const [file, setFile] = useState(null);
     const [filePreview, setFilePreview] = useState(null);
@@ -30,6 +30,7 @@ const SendMessage = ({ scroll }) => {
                 uid,
                 imageUrl: fileUrl,
                 timestamp: firestoreServerTimestamp(),
+                chatRoomId: chatRoomId,
             });
         } else {
             await firestoreAddDoc(firestoreCollection(firestore, 'messages'), {
@@ -37,6 +38,7 @@ const SendMessage = ({ scroll }) => {
                 name: displayName,
                 uid,
                 timestamp: firestoreServerTimestamp(),
+                chatRoomId: chatRoomId,
             });
         }
 

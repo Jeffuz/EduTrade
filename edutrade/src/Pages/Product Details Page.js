@@ -3,8 +3,9 @@ import { UserAuth } from "../Context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { firestore, firestoreGetDoc, firestoreDoc, firestoreCollection, firestoreAddDoc, firestoreQuery, firestoreWhere, firestoreGetDocs} from '../Firebase';
+import { firestore, firestoreGetDoc, firestoreDoc, firestoreCollection, firestoreAddDoc, firestoreServerTimestamp, firestoreQuery, firestoreWhere, firestoreGetDocs } from '../Firebase';
 import { setSelected } from "../Redux/Actions/Actions";
+
 
 import ImageDisplay from "../Components/ImageDisplay";
 
@@ -17,15 +18,15 @@ export default function Product_Details_Page() {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
 
-    useEffect(()=> {
+    useEffect(() => {
         let id = params.get('listingID');
 
         async function getListing() {
-            try{
-                let productRef = await firestoreGetDoc(firestoreDoc(firestore, "product_listings", id));      
+            try {
+                let productRef = await firestoreGetDoc(firestoreDoc(firestore, "product_listings", id));
                 dispatch(setSelected(productRef.data()));
 
-            } catch(e){
+            } catch (e) {
                 console.error("Listing not found", e);
             }
 
@@ -33,29 +34,37 @@ export default function Product_Details_Page() {
         getListing();
     }, []);
 
-    const handleClick = async() => {
+    const handleClick = async () => {
         try {
-            let isExists = false;
+            const currentUser = user;
+            const seller = selectedItem;
 
-            const userRef = firestoreCollection(firestore, "chat_users");
-            const q = firestoreQuery(userRef, firestoreWhere("uid", "==", selectedItem.uid));
+            const chatRoomId = [currentUser.uid, seller.uid].sort().join('_');
 
-            const querySnap = await firestoreGetDocs(q);
-            
-            // Check if display name already exists
-            querySnap.forEach((item) => {
-                isExists = true;         
-            })
+            const q = firestoreQuery(
+                firestoreCollection(firestore, 'chats'),
+                firestoreWhere('users', '==', [currentUser.uid, seller.uid])
+            );
 
-            if(!isExists){ 
-                await firestoreAddDoc(userRef, { 
-                    displayName: user.displayName,
-                    uid: selectedItem.uid });
-            }           
+            const querySnapshot = await firestoreGetDocs(q);
+
+            if (querySnapshot.size > 0) {
+                const existingChatRoom = querySnapshot.docs[0];
+                navigate(`/message/${existingChatRoom.data().chatRoomId}`);
+            } else {
+                await firestoreAddDoc(firestoreCollection(firestore, 'chats'), {
+                    chatRoomId,
+                    users: [currentUser.uid, seller.uid],
+                    createdAt: firestoreServerTimestamp(),
+                    username: seller.displayName,
+                });
+                navigate(`/message/${chatRoomId}`);
+            }
         } catch (error) {
-            console.error("Error Adding Listing", error);
+            console.error('Error creating/chatRoom document', error);
         }
-    }
+    };
+
     const goBack = () => {
         navigate(-1);
     }
