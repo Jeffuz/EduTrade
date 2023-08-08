@@ -28,7 +28,7 @@ export default function ProfilePictureUpdate() {
                 <img
                     src={selectedImage ? URL.createObjectURL(selectedImage) : user.photoURL || "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"}
                     alt=""
-                    style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+                    style={{ width: "150px", height: "150px", borderRadius: "50%" }}
                     className="ease-in-out duration-300 hover:blur-sm"
                 />
             </label>

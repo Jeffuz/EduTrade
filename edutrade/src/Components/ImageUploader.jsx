@@ -40,13 +40,13 @@ const ImageUploader = () => {
     return canvas.toDataURL("image/jpeg", 0.2); // get the data from canvas as 70% JPG (can be also PNG, etc.)
   }
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-      <h3 className="text-2xl font-semibold mb-4">Upload Image</h3>
+    <div className="bg-blue-100 p-6 rounded-lg shadow-md">
+      <h3 className="text-2xl font-semibold mb-4 text-blue-800">Upload Image</h3>
       <div className="flex flex-col gap-4">
         <ImageDisplay imageList={imageList} />
         <label
           htmlFor="imageInput"
-          className="cursor-pointer bg-blue-500 text-white text-center py-2 px-4 rounded-lg hover:bg-blue-600"
+          className="cursor-pointer bg-indigo-600 text-white text-center py-2 px-4 rounded-lg hover:bg-indigo-700"
         >
           Upload Image
           <input

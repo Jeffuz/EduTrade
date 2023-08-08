@@ -6,7 +6,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-gray-800 text-white py-4">
+        <footer className="bg-blue-400 text-white py-4">
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 md:gap-4 items-center">
                 <div className="text-center md:text-left">
                     <Link to="/" className="font-bold text-lg">EduTrade</Link>
