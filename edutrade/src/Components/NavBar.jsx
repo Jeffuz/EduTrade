@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../Context/AuthContext';
 import { BiMessageSquareDetail } from "react-icons/bi";
-import { CgProfile } from 'react-icons/cg';
 
 const NavBar = () => {
     const { user, logOut } = UserAuth()
@@ -19,7 +18,7 @@ const NavBar = () => {
             <div>
                 {user?.email ? (
                     <div className='flex justify-center items-center'>
-                        <Link to="/message" className='p-4'><BiMessageSquareDetail size={25} /></Link>
+                        <Link to="/messages" className='p-4'><BiMessageSquareDetail size={25} /></Link>
                         <Link to="/userprofile " className='p-4'>
                             <img src={user.photoURL} alt='Profile' className='w-8 h-8 rounded-full' />
                         </Link>
