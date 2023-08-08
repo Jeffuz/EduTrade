@@ -31,7 +31,7 @@ const ChatSidebar = () => {
     );
 
     return (
-        <div className="bg-gray-200 p-4 h-full overflow-y-auto" style={{ height: '79vh' }}>
+        <div className="bg-gray-200 p-4 h-full overflow-y-auto" style={{ height: '79.6vh' }}>
             <h2 className="text-lg font-semibold mb-4 text-gray-800">Chat Rooms</h2>
             <input
                 type="text"
