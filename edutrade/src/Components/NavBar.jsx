@@ -20,7 +20,9 @@ const NavBar = () => {
                 {user?.email ? (
                     <div className='flex justify-center items-center'>
                         <Link to="/message" className='p-4'><BiMessageSquareDetail size={25} /></Link>
-                        <Link to="/userprofile " className='p-4'><CgProfile size={25} /></Link>
+                        <Link to="/userprofile " className='p-4'>
+                            <img src={user.photoURL} alt='Profile' className='w-8 h-8 rounded-full' />
+                        </Link>
                         <button onClick={handleSignOut} className='p-4'>Logout</button>
                     </div>
                 ) : (

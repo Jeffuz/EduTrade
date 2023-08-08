@@ -20,6 +20,7 @@ import Protected from './Components/Protected';
 import Footer from './Components/Footer';
 import Message from './Pages/Message Page';
 import CreateListingPage from './Pages/Create Listing Page';
+import ChatSidebar from './Components/ChatSidebar';
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
           <Route path="/shoppingcart" element={< ShoppingCartPage />} />
           <Route path="/thread" element={< ThreadPage />} />
           <Route path="/userprofile" element={<Protected><UserProfilePage /></Protected>} />
-          <Route path="/message" element={<Protected>< Message /></Protected>} />
+          <Route path="/message/:chatRoomId" element={<Protected><Message /></Protected>} />
           <Route path="*" element={<NoPage />} />
           <Route path="/post/:postId" element={< ThreadPage />} />
           <Route path="/createlisting" element={<CreateListingPage />} />
