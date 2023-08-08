@@ -27,7 +27,7 @@ function PostList() {
       <ul className="px-16 space-y-6">
         {posts.map((post) => (
           <li key={post.id} className="rounded">
-            <Link to={`/post/${post.id}`} className="block p-4 border-2 border-pink-200 hover:border-pink-500 rounded-md">
+            <Link to={`/post/${post.id}`} className="block p-4 border-2 border-stone-300 hover:border-stone-500 rounded-md">
               <div className="cursor-pointer">
                 {/* Display user name and profile photo */}
                 <div className="flex items-center mb-2">

@@ -71,7 +71,7 @@ const SearchBarComponent = () => {
         </GeoapifyContext >
       </div>
       <button
-        className='rounded-md w-1/12 py-2 bg-orange-400 hover:bg-orange-300 duration-300 ease-in-out shadow-lg font-semibold text-gray-900'
+        className='rounded-md w-1/12 py-2 bg-stone-300 hover:bg-stone-400 duration-300 ease-in-out shadow-lg font-semibold text-gray-900'
         onClick={handleClick}>
         Search
       </button>

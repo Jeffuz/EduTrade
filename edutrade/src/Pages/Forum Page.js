@@ -33,7 +33,7 @@ export default function Forum_Page() {
         </div>
         <div className="w-1/5 flex flex-col pl-10">
           <button
-            className="bg-pink-500 py-3 mr-4 ml-16 text-gray-200 items-center font-bold rounded focus:bg-pink-300"
+            className="bg-stone-500 py-3 mr-4 ml-16 text-gray-200 items-center font-bold rounded focus:bg-stone-300"
             onClick={openModal}>
             post
           </button>

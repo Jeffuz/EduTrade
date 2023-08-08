@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef  } from "react";
+import React, { useEffect } from "react";
 import { addItem, clearProductList } from "../Redux/Actions/Actions";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -9,13 +9,6 @@ import { useNavigate } from "react-router";
 
 
 export default function HorizontalDisplayItems() {
-  const ourRef = useRef(null);
-  const [isMouseDown, setIsMouseDown] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const mouseCoords = useRef({
-    startX: 0,
-    scrollLeft: 0,
-  })
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -55,54 +48,42 @@ export default function HorizontalDisplayItems() {
     })
   }
 
-  const handleDragStart = (e) => {
-    if(!ourRef.current) return;
-    const slider = ourRef.current;
-    
-    const startX = e.pageX - slider.offsetLeft;
-    const scrollLeft = slider.scrollLeft;
-
-    mouseCoords.current = {startX, scrollLeft};
-
-    setIsMouseDown(true);
-
-    document.body.style.cursor = "grabbing";
+  const handleClick = () => {
+    navigate("/productlistings");
   }
-  const handleDragEnd = (e) => {
-    setIsMouseDown(false);
-    if(!ourRef.current) return;
 
-    document.body.style.cursor = "default";
-  }
-  const handleDrag = (e) => {
-    if(!isMouseDown || !ourRef.current) return;
+  const handleScroll = (scrollDirection) => {
+    const container = document.querySelector('.flex.overflow-x-auto');
+    if (container) {
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      const scrollIncrement = 5; // Adjust the scroll increment as needed
+      const scrollIntervalTime = 10; // Adjust the interval time (in milliseconds) as needed
+  
+      let currentScrollLeft = container.scrollLeft;
+      const scrollInterval = setInterval(() => {
+        if (scrollDirection === 'right') {
+          currentScrollLeft += scrollIncrement;
+          if (currentScrollLeft >= maxScrollLeft) {
+            clearInterval(scrollInterval);
+          }
+        } else if (scrollDirection === 'left') {
+          currentScrollLeft -= scrollIncrement;
+          if (currentScrollLeft <= 0) {
+            clearInterval(scrollInterval);
+          }
+        }
+        container.scrollLeft = currentScrollLeft;
+      }, scrollIntervalTime);
+    }
+  };
 
-    e.preventDefault();
-    const slider = ourRef.current;
-    const x = e.pageX - slider.offsetLeft;
-    console.log("Initial " + mouseCoords.current.startX + " X Offset => " + x);
-    const walkX = (x - mouseCoords.current.startX) * 1.5;
-
-
-    slider.scrollLeft = mouseCoords.current.scrollLeft - walkX;
-    console.log(slider.scrollLeft);
-    //console.log(walkX);
-
-  }
-  const handleMouseLeave = () => {
-    setIsMouseDown(false);
-    document.body.style.cursor = "default";
-  }
   return (
-    <div className="border-gray-300/20 hover:border-gray-300/80 px-4 py-2 rounded-lg border-4 to-slate-100">
-      <div className="flex z-[-1]">
+    <div className="border-none bg-stone-600/50 hover:border-gray-300/80 rounded-lg border-4 to-slate-100">
+      <div className="flex overflow-x-hidden z-[-1]">
         <div
-          ref={ourRef}
-          className="flex overflow-x-auto"
-          onMouseDown={handleDragStart} 
-          onMouseUp={handleDragEnd}
-          onMouseMove={handleDrag}
-          onMouseLeave={handleMouseLeave}
+          className="flex overflow-x-auto py-2"
+          onMouseEnter={() => handleScroll('right')}
+          onMouseLeave={() => handleScroll('left')}
         >
           {productList.map((item, index) => (
             <div key={index}>
@@ -116,7 +97,7 @@ export default function HorizontalDisplayItems() {
             </div>
           ))}
         {/* "More" button directing to another page */}
-        <a href="/productlistings" className="h-full bg-red-100 p-2 flex items-center">
+        <a href="/other-page" className="h-full bg-stone-300 rounded flex items-center font-semibold text-gray-900">
           More
         </a>
       </div>
