@@ -2,6 +2,7 @@
   "name": "edutrade",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Jeffuz.github.io/EduTrade",
   "dependencies": {
     "@formspree/react": "^2.5.0",
     "@geoapify/geocoder-autocomplete": "^1.5.1",
@@ -13,6 +14,7 @@
     "emoji-picker-react": "^4.4.10",
     "firebase": "^10.1.0",
     "framer-motion": "^10.15.0",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-button": "^0.7.2",
@@ -24,6 +26,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
