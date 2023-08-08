@@ -13,7 +13,7 @@ const ItemDisplay = ({image, title, location, price, docID}) => {
     max-h-fit max-w-[20rem] flex-auto">
       <img src={image} alt="Item Image" 
       className="rounded-lg object-cover h-[20rem] w-[20rem]
-      border-2 border-solid border-slate-900 "/>
+      border-2 border-none"/>
 
       <p className="text-2xl ">${price}</p>
       <h3 className="text-2xl">{title}</h3>
