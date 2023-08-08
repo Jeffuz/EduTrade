@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/EduTrade/static/css/main.c2c992ac.css",
-    "main.js": "/EduTrade/static/js/main.e2b801bd.js",
+    "main.css": "/EduTrade/static/css/main.c41faf6a.css",
+    "main.js": "/EduTrade/static/js/main.cca67e7f.js",
     "static/js/787.a0f65d01.chunk.js": "/EduTrade/static/js/787.a0f65d01.chunk.js",
     "index.html": "/EduTrade/index.html",
-    "main.c2c992ac.css.map": "/EduTrade/static/css/main.c2c992ac.css.map",
-    "main.e2b801bd.js.map": "/EduTrade/static/js/main.e2b801bd.js.map",
+    "main.c41faf6a.css.map": "/EduTrade/static/css/main.c41faf6a.css.map",
+    "main.cca67e7f.js.map": "/EduTrade/static/js/main.cca67e7f.js.map",
     "787.a0f65d01.chunk.js.map": "/EduTrade/static/js/787.a0f65d01.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2c992ac.css",
-    "static/js/main.e2b801bd.js"
+    "static/css/main.c41faf6a.css",
+    "static/js/main.cca67e7f.js"
   ]
 }
