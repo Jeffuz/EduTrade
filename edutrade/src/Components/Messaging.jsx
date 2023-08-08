@@ -14,11 +14,11 @@ const Messaging = () => {
     const scroll = useRef();
 
     useEffect(() => {
-        console.log('Fetching messages for chat room:', chatRoomId); 
+        console.log('Fetching messages for chat room:', chatRoomId);
 
         const q = query(
             collection(firestore, 'messages'),
-            where('chatRoomId', '==', chatRoomId), 
+            where('chatRoomId', '==', chatRoomId),
             orderBy('timestamp')
         );
 
@@ -28,14 +28,13 @@ const Messaging = () => {
                 messages.push({ ...doc.data(), id: doc.id });
             });
 
-            console.log('Retrieved messages:', messages); 
+            console.log('Retrieved messages:', messages);
 
-            setMessages(messages); 
+            setMessages(messages);
         });
 
         return () => unsubscribe();
-    }, [chatRoomId]); 
-
+    }, [chatRoomId]);
 
     useEffect(() => {
         const handleImageLoad = () => {
@@ -52,7 +51,7 @@ const Messaging = () => {
 
     return (
         <div className='flex'>
-            <ChatSidebar/>
+            <ChatSidebar />
             <div className="flex-1 overflow-y-auto px-4 py-6">
                 <div className="h-[39.3rem] overflow-y-auto mb-4" ref={scroll}>
                     {messages.map((message) => (
